@@ -100,12 +100,13 @@ class BoxScoreViewSet(ReadOnlyModelViewSet):
         team_abbreviation = self.request.query_params.get('team_abbreviation', None)
         unix_start_time = self.request.query_params.get('unix_start_time', None)
         unix_end_time = self.request.query_params.get('unix_end_time', None)
+        print first_name
 
         if first_name is not None:
-            queryset = queryset.filter(first_name=first_name)
+            queryset = queryset.filter(player__first_name=first_name)
 
         if last_name is not None:
-            queryset = queryset.filter(last_name=last_name)
+            queryset = queryset.filter(player__last_name=last_name)
 
         if team_abbreviation is not None:
             queryset = queryset.filter(team__abbreviation=team_abbreviation)
