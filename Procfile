@@ -1,1 +1,1 @@
-web: python manage.py runserver
+web: gunicorn nba_persistence.wsgi --log-file -

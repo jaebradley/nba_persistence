@@ -1,5 +1,6 @@
 basketball-reference-web-scraper==1.9
 dj-database-url==0.3.0
+dj-static==0.0.6
 Django==1.9
 djangorestframework==3.3.2
 Flask==0.10.1
@@ -17,6 +18,7 @@ python-mimeparse==0.1.4
 pytz==2015.2
 six==1.10.0
 SQLAlchemy==0.9.9
+static3==0.6.1
 urllib3==1.13.1
 Werkzeug==0.11.3
 wheel==0.24.0
