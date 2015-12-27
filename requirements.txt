@@ -1,4 +1,5 @@
 basketball-reference-web-scraper==1.9
+dj-database-url==0.3.0
 Django==1.9
 djangorestframework==3.3.2
 Flask==0.10.1

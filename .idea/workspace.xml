@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nba_persistence/settings.py" afterPath="$PROJECT_DIR$/nba_persistence/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
-    </list>
+    <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="" />
     <ignored path="nba_persistence.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,7 +58,7 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49632353">
+            <state vertical-scroll-proportion="-0.40625">
               <caret line="85" column="63" selection-start-line="85" selection-start-column="63" selection-end-line="85" selection-end-column="63" />
               <folding>
                 <element signature="e#314#323#0" expanded="true" />
@@ -574,7 +571,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49632353">
+        <state vertical-scroll-proportion="-0.40625">
           <caret line="85" column="63" selection-start-line="85" selection-start-column="63" selection-end-line="85" selection-end-column="63" />
           <folding>
             <element signature="e#314#323#0" expanded="true" />
