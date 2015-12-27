@@ -128,5 +128,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '../nba_persistence/static'),
 )
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
