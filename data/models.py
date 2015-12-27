@@ -11,6 +11,9 @@ class Position(Model):
     class Meta:
         unique_together = ('name', 'abbreviation')
 
+    def __unicode__(self):
+        return '{0} - {1}'.format(self.name, self.abbreviation)
+
 
 class Team(Model):
 
@@ -19,6 +22,9 @@ class Team(Model):
 
     class Meta:
         unique_together = ('name', 'abbreviation')
+
+    def __unicode__(self):
+        return '{0} - {1}'.format(self.name, self.abbreviation)
 
 
 class Season(Model):
@@ -36,6 +42,9 @@ class Game(Model):
     class Meta:
         unique_together = ('home_team', 'away_team', 'start_time')
 
+    def __unicode__(self):
+        return '{0} - {1} - {2}'.format(self.home_team.abbreviation, self.away_team.abbreviation, self.start_time)
+
 
 class Player(Model):
 
@@ -47,6 +56,9 @@ class Player(Model):
     class Meta:
         unique_together = ('first_name', 'last_name', 'team', 'position')
 
+    def __unicode__(self):
+        return '{0} {1} - {2} - {3}'.format(self.first_name, self.last_name, self.position, self.team.abbreviation)
+
 
 class DraftkingsPlayerSalary(Model):
 
@@ -56,6 +68,9 @@ class DraftkingsPlayerSalary(Model):
 
     class Meta:
         unique_together = ('game', 'player', 'salary')
+
+    def __unicode__(self):
+        return '{0} - {1} - {2}'.format(self.game, self.player, self.salary)
 
 
 class BoxScore(Model):
@@ -82,3 +97,6 @@ class BoxScore(Model):
 
     class Meta:
         unique_together = ('player', 'game')
+
+    def __unicode__(self):
+        return '{0} - {1} - {2}'.format(self.player, self.game, self.draftkings_points)

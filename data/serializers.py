@@ -1,5 +1,5 @@
 from data.models import Team, Position, Season, Game, Player, BoxScore
-from rest_framework.serializers import HyperlinkedModelSerializer
+from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializer
 
 
 class PositionSerializer(HyperlinkedModelSerializer):

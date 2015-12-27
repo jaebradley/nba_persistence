@@ -1,5 +1,5 @@
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.generics import ListAPIView
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from datetime import datetime
 from pytz import utc
 
@@ -30,7 +30,7 @@ class GameViewSet(ModelViewSet):
     serializer_class = GameSerializer
 
 
-class PlayerView(ListAPIView):
+class PlayerViewSet(ReadOnlyModelViewSet):
     serializer_class = PlayerSerializer
 
     def get_queryset(self):
@@ -39,22 +39,17 @@ class PlayerView(ListAPIView):
         last_name = self.request.query_params.get('last_name', None)
         team_abbreviation = self.request.query_params.get('team_abbreviation', None)
         position_abbreviation = self.request.query_params.get('position_abbreviation', None)
+        if first_name is not None:
+            queryset = queryset.filter(first_name=first_name)
 
-        if 'id' in self.kwargs:
-            queryset = queryset.filter(id=self.kwargs['id'])
+        if last_name is not None:
+            queryset = queryset.filter(last_name=last_name)
 
-        else:
-            if first_name is not None:
-                queryset = queryset.filter(first_name=first_name)
+        if team_abbreviation is not None:
+            queryset = queryset.filter(team__abbreviation=team_abbreviation)
 
-            if last_name is not None:
-                queryset = queryset.filter(last_name=last_name)
-
-            if team_abbreviation is not None:
-                queryset = queryset.filter(team__abbreviation=team_abbreviation)
-
-            if position_abbreviation is not None:
-                queryset = queryset.filter(position__abbreviation=position_abbreviation)
+        if position_abbreviation is not None:
+            queryset = queryset.filter(position__abbreviation=position_abbreviation)
 
         return queryset
 

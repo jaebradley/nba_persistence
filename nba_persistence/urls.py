@@ -17,18 +17,25 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
-from data.views import TeamViewSet, PositionViewSet, SeasonViewSet, GameViewSet, PlayerView, BoxScoreView
+from data.views import TeamViewSet, PositionViewSet, SeasonViewSet, GameViewSet, BoxScoreView, PlayerViewSet
 import settings
 
-router = routers.DefaultRouter()
+player_list = PlayerViewSet.as_view({
+    'get': 'list',
+})
+player_detail = PlayerViewSet.as_view({
+    'get': 'retrieve',
+})
+
+router = routers.SimpleRouter()
 router.register(r'teams', TeamViewSet)
 router.register(r'seasons', SeasonViewSet)
 router.register(r'games', GameViewSet)
 router.register(r'positions', PositionViewSet)
 
 urlpatterns = [
-    url(r'^players/$', PlayerView.as_view()),
-    url(r'^players/(?P<id>.+)/$', PlayerView.as_view()),
+    url(r'^players/$', player_list, name='player-list'),
+    url(r'^players/(?P<pk>[0-9]+)/$', player_detail, name='player-detail'),
     url(r'^box_scores/$', BoxScoreView.as_view()),
     url(r'^box_scores/(?P<id>.+)/$', BoxScoreView.as_view()),
     url(r'^admin/', admin.site.urls),
