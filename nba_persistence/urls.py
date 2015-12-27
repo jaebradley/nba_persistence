@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
-from data.views import TeamViewSet, PositionViewSet, SeasonViewSet, GameViewSet, PlayerView, BoxScoreViewSet
+from data.views import TeamViewSet, PositionViewSet, SeasonViewSet, GameViewSet, PlayerView, BoxScoreView
 import settings
 
 router = routers.DefaultRouter()
@@ -25,11 +25,12 @@ router.register(r'teams', TeamViewSet)
 router.register(r'seasons', SeasonViewSet)
 router.register(r'games', GameViewSet)
 router.register(r'positions', PositionViewSet)
-router.register(r'box_scores', BoxScoreViewSet)
 
 urlpatterns = [
     url(r'^players/$', PlayerView.as_view()),
     url(r'^players/(?P<id>.+)/$', PlayerView.as_view()),
+    url(r'^box_scores/$', BoxScoreView.as_view()),
+    url(r'^box_scores/(?P<id>.+)/$', BoxScoreView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),

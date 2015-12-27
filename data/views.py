@@ -59,7 +59,7 @@ class PlayerView(ListAPIView):
         return queryset
 
 
-class BoxScoreViewSet(ModelViewSet):
+class BoxScoreView(ListAPIView):
     serializer_class = BoxScoreSerializer
 
     def get_queryset(self):
