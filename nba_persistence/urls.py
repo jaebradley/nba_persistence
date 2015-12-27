@@ -18,6 +18,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 from data.views import TeamViewSet, PositionViewSet, SeasonViewSet, GameViewSet, PlayerView, BoxScoreViewSet
+import settings
 
 router = routers.DefaultRouter()
 router.register(r'teams', TeamViewSet)
@@ -31,4 +32,5 @@ urlpatterns = [
     url(r'^players/(?P<id>.+)/$', PlayerView.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 ]
