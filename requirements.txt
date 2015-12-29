@@ -1,4 +1,4 @@
-basketball-reference-web-scraper==2.0
+basketball-reference-web-scraper==2.1
 dj-database-url==0.3.0
 dj-static==0.0.6
 Django==1.9
