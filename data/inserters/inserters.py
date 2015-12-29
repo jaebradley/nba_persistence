@@ -60,7 +60,7 @@ def insert_players(season_start_year):
             player_position = 'PG'
         elif player_season.position == 'F':
             player_position = 'SF'
-        elif player_season.position != 'G' or player_season.position != 'F':
+        elif '-' in player_season.position:
             player_position = 'PG'
         else:
             player_position = player_season.position
