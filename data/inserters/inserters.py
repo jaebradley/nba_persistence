@@ -127,45 +127,47 @@ def insert_daily_fantasy_sports_sites():
 
 def insert_draftkings_salaries(day):
     draftkings_file_name = os.path.join(os.path.dirname(__file__), "static/salaries/draftkings/{0}-{1}-{2}.csv".format(day.year, day.month, day.day))
-    with open(draftkings_file_name) as file:
-        reader = csv.reader(file)
-        salaries = list(reader)[1:]
-        site = DailyFantasySportsSite.objects.get(name="DraftKings")
-        for salary in salaries:
-            names_list = salary[1].split(" ")
-            first_name = names_list[0]
-            last_name = names_list[1]
-            game_info_list = salary[3].split(" ")
-            team_abbreviation_list = game_info_list[0].split("@")
-            away_team_abbreviation = draftkings_salary_team_abbreviation_converter(team_abbreviation_list[0])
-            home_team_abbreviation = draftkings_salary_team_abbreviation_converter(team_abbreviation_list[1])
-            start_time = game_info_list[1]
-            utc_start_time = timezone("US/Eastern").localize(datetime.strptime("{0}{1}{2}{3}".format(day.year, day.month, day.day, start_time), "%Y%m%d%I:%M%p")).astimezone(utc)
-            player_team_abbreviation = draftkings_salary_team_abbreviation_converter(salary[5].upper())
-            player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
-            game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time=utc_start_time)
-            salary_value = salary[2]
-            PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
+    if os.path.isfile(draftkings_file_name):
+        with open(draftkings_file_name) as file:
+            reader = csv.reader(file)
+            salaries = list(reader)[1:]
+            site = DailyFantasySportsSite.objects.get(name="DraftKings")
+            for salary in salaries:
+                names_list = salary[1].split(" ")
+                first_name = names_list[0]
+                last_name = names_list[1]
+                game_info_list = salary[3].split(" ")
+                team_abbreviation_list = game_info_list[0].split("@")
+                away_team_abbreviation = draftkings_salary_team_abbreviation_converter(team_abbreviation_list[0])
+                home_team_abbreviation = draftkings_salary_team_abbreviation_converter(team_abbreviation_list[1])
+                start_time = game_info_list[1]
+                utc_start_time = timezone("US/Eastern").localize(datetime.strptime("{0}{1}{2}{3}".format(day.year, day.month, day.day, start_time), "%Y%m%d%I:%M%p")).astimezone(utc)
+                player_team_abbreviation = draftkings_salary_team_abbreviation_converter(salary[5].upper())
+                player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
+                game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time=utc_start_time)
+                salary_value = salary[2]
+                PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
 
 
 def insert_fanduel_salaries(day):
     fanduel_file_name = os.path.join(os.path.dirname(__file__), "static/salaries/fanduel/{0}-{1}-{2}.csv".format(day.year, day.month, day.day))
-    with open(fanduel_file_name) as file:
-        reader = csv.reader(file)
-        salaries = list(reader)[1:]
-        site = DailyFantasySportsSite.objects.get(name="FanDuel")
-        for salary in salaries:
-            first_name = salary[2]
-            last_name = salary[3]
-            game_info_list = salary[7].split("@")
-            away_team_abbreviation = fanduel_salary_team_abbreviation_converter(game_info_list[0])
-            home_team_abbreviation = fanduel_salary_team_abbreviation_converter(game_info_list[1])
-            player_team_abbreviation = fanduel_salary_team_abbreviation_converter(salary[8].upper())
-            player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
-            day_start_est = timezone('US/Eastern').localize(datetime(year=day.year, month=day.month, day=day.day, hour=0, minute=0, second=0, microsecond=0))
-            day_end_est = day_start_est + timedelta(hours=24)
-            day_start_utc = day_start_est.astimezone(utc)
-            day_end_utc = day_end_est.astimezone(utc)
-            game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time__gte=day_start_utc, start_time__lte=day_end_utc)
-            salary_value = salary[6]
-            PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
+    if os.path.isfile(fanduel_file_name):
+        with open(fanduel_file_name) as file:
+            reader = csv.reader(file)
+            salaries = list(reader)[1:]
+            site = DailyFantasySportsSite.objects.get(name="FanDuel")
+            for salary in salaries:
+                first_name = salary[2]
+                last_name = salary[3]
+                game_info_list = salary[7].split("@")
+                away_team_abbreviation = fanduel_salary_team_abbreviation_converter(game_info_list[0])
+                home_team_abbreviation = fanduel_salary_team_abbreviation_converter(game_info_list[1])
+                player_team_abbreviation = fanduel_salary_team_abbreviation_converter(salary[8].upper())
+                player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
+                day_start_est = timezone('US/Eastern').localize(datetime(year=day.year, month=day.month, day=day.day, hour=0, minute=0, second=0, microsecond=0))
+                day_end_est = day_start_est + timedelta(hours=24)
+                day_start_utc = day_start_est.astimezone(utc)
+                day_end_utc = day_end_est.astimezone(utc)
+                game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time__gte=day_start_utc, start_time__lte=day_end_utc)
+                salary_value = salary[6]
+                PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
