@@ -133,7 +133,7 @@ def insert_draftkings_salaries(day):
             salaries = list(reader)[1:]
             site = DailyFantasySportsSite.objects.get(name="DraftKings")
             for salary in salaries:
-                position = salary[0]
+                position_abbreviation = salary[0]
                 names_list = salary[1].split(" ")
                 first_name = names_list[0]
                 last_name = names_list[1]
@@ -147,8 +147,10 @@ def insert_draftkings_salaries(day):
                 try:
                     player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
                 except ObjectDoesNotExist:
-                    print first_name, last_name, player_team_abbreviation, position
-                    player, created = Player.objects.get_or_create(position__abbreviation=position, first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
+                    print first_name, last_name, player_team_abbreviation, position_abbreviation
+                    position = Position.objects.get(abbreviation=position_abbreviation)
+                    team = Team.objects.get(abbreviation=player_team_abbreviation)
+                    player, created = Player.objects.get_or_create(position=position, first_name=first_name, last_name=last_name, team=team)
                 game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time=utc_start_time)
                 salary_value = salary[2]
                 PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
@@ -162,7 +164,7 @@ def insert_fanduel_salaries(day):
             salaries = list(reader)[1:]
             site = DailyFantasySportsSite.objects.get(name="FanDuel")
             for salary in salaries:
-                position = [1]
+                position_abbreviation = salary[1]
                 first_name = salary[2]
                 last_name = salary[3]
                 game_info_list = salary[7].split("@")
@@ -172,8 +174,10 @@ def insert_fanduel_salaries(day):
                 try:
                     player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
                 except ObjectDoesNotExist:
-                    print first_name, last_name, player_team_abbreviation, position
-                    player, created = Player.objects.get_or_create(position__abbreviation=position, first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
+                    print first_name, last_name, player_team_abbreviation, position_abbreviation
+                    position = Position.objects.get(abbreviation=position_abbreviation)
+                    team = Team.objects.get(abbreviation=player_team_abbreviation)
+                    player, created = Player.objects.get_or_create(position=position, first_name=first_name, last_name=last_name, team=team)
                 day_start_est = timezone('US/Eastern').localize(datetime(year=day.year, month=day.month, day=day.day, hour=0, minute=0, second=0, microsecond=0))
                 day_end_est = day_start_est + timedelta(hours=24)
                 day_start_utc = day_start_est.astimezone(utc)
