@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nba_persistence/settings.py" afterPath="$PROJECT_DIR$/nba_persistence/settings.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/inserters.py" afterPath="$PROJECT_DIR$/data/inserters/inserters.py" />
     </list>
     <ignored path="nba_persistence.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,21 +24,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.055045873">
+            <state vertical-scroll-proportion="0.0">
               <caret line="29" column="171" selection-start-line="29" selection-start-column="171" selection-end-line="29" selection-end-column="171" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inserters.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
+      <file leaf-file-name="2015-12-28.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-28.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="172" column="108" selection-start-line="172" selection-start-column="108" selection-end-line="172" selection-end-column="108" />
+              <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inserters.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.85504586">
+              <caret line="146" column="84" selection-start-line="146" selection-start-column="84" selection-end-line="146" selection-end-column="84" />
               <folding>
                 <element signature="e#0#108#0" expanded="true" />
               </folding>
@@ -49,7 +60,7 @@
         <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="73" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
+              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -88,8 +99,8 @@
         <option value="$PROJECT_DIR$/data/inserters/static/salaries/fanduel/2015-12-28.csv" />
         <option value="$PROJECT_DIR$/data/inserters/utils.py" />
         <option value="$PROJECT_DIR$/data/management/commands/insert_data.py" />
-        <option value="$PROJECT_DIR$/data/inserters/inserters.py" />
         <option value="$PROJECT_DIR$/nba_persistence/settings.py" />
+        <option value="$PROJECT_DIR$/data/inserters/inserters.py" />
       </list>
     </option>
   </component>
@@ -246,6 +257,84 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="inserters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nba_persistence" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nba_persistence" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inserters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nba_persistence" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nba_persistence" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inserters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="salaries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nba_persistence" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nba_persistence" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="inserters" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="salaries" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="draftkings" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -746,14 +835,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-28.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24770643">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/static/salaries/fanduel/2015-12-30.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="7.4587154">
@@ -762,29 +843,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
+    <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="172" column="108" selection-start-line="172" selection-start-column="108" selection-end-line="172" selection-end-column="108" />
-          <folding>
-            <element signature="e#0#108#0" expanded="true" />
-          </folding>
+          <caret line="29" column="171" selection-start-line="29" selection-start-column="171" selection-end-line="29" selection-end-column="171" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-28.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="73" selection-start-line="15" selection-start-column="73" selection-end-line="15" selection-end-column="73" />
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
+    <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.055045873">
-          <caret line="29" column="171" selection-start-line="29" selection-start-column="171" selection-end-line="29" selection-end-column="171" />
-          <folding />
+        <state vertical-scroll-proportion="0.85504586">
+          <caret line="146" column="84" selection-start-line="146" selection-start-column="84" selection-end-line="146" selection-end-column="84" />
+          <folding>
+            <element signature="e#0#108#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
