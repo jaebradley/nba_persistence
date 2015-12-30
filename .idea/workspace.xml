@@ -46,8 +46,8 @@
       <file leaf-file-name="inserters.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7522936">
-              <caret line="171" column="40" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.72477067">
+              <caret line="173" column="188" selection-start-line="173" selection-start-column="188" selection-end-line="173" selection-end-column="188" />
               <folding>
                 <element signature="e#0#108#0" expanded="true" />
               </folding>
@@ -836,14 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33211008">
-          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/static/salaries/fanduel/2015-12-30.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="7.4587154">
@@ -854,16 +846,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-29.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24770643">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.9082569">
+          <caret line="33" column="12" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33027524">
+          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7522936">
-          <caret line="171" column="40" selection-start-line="171" selection-start-column="40" selection-end-line="171" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.72477067">
+          <caret line="173" column="188" selection-start-line="173" selection-start-column="188" selection-end-line="173" selection-end-column="188" />
           <folding>
             <element signature="e#0#108#0" expanded="true" />
           </folding>
