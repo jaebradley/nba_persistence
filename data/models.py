@@ -60,17 +60,26 @@ class Player(Model):
         return '{0} {1} - {2} - {3}'.format(self.first_name, self.last_name, self.position, self.team.abbreviation)
 
 
-class DraftkingsPlayerSalary(Model):
+class DailyFantasySportsSite(Model):
 
+    name = CharField(max_length=50, unique=True)
+
+    def __unicode__(self):
+        return '{0}'.format(self.name)
+
+
+class PlayerSalary(Model):
+
+    site = ForeignKey(DailyFantasySportsSite, on_delete=CASCADE)
     game = ForeignKey(Game, on_delete=CASCADE)
     player = ForeignKey(Player, on_delete=CASCADE)
     salary = FloatField()
 
     class Meta:
-        unique_together = ('game', 'player', 'salary')
+        unique_together = ('site', 'game', 'player', 'salary')
 
     def __unicode__(self):
-        return '{0} - {1} - {2}'.format(self.game, self.player, self.salary)
+        return '{0} - {1} - {2} - {3}'.format(self.site, self.game, self.player, self.salary)
 
 
 class BoxScore(Model):
