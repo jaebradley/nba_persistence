@@ -46,8 +46,8 @@
       <file leaf-file-name="inserters.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72477067">
-              <caret line="173" column="188" selection-start-line="173" selection-start-column="188" selection-end-line="173" selection-end-column="188" />
+            <state vertical-scroll-proportion="0.64220184">
+              <caret line="171" column="16" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
               <folding>
                 <element signature="e#0#108#0" expanded="true" />
               </folding>
@@ -862,8 +862,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72477067">
-          <caret line="173" column="188" selection-start-line="173" selection-start-column="188" selection-end-line="173" selection-end-column="188" />
+        <state vertical-scroll-proportion="0.64220184">
+          <caret line="171" column="16" selection-start-line="171" selection-start-column="16" selection-end-line="171" selection-end-column="16" />
           <folding>
             <element signature="e#0#108#0" expanded="true" />
           </folding>
