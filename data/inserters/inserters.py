@@ -1,4 +1,4 @@
-from data.models import Position, Team, Season, Game, Player, BoxScore
+from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
 import csv
 from basketball_reference_web_scraper.readers import return_schedule, return_all_player_season_statistics, return_box_scores_for_date
 from pytz import timezone, utc
@@ -112,3 +112,12 @@ def insert_box_scores(minimum_date, maximum_date):
         box_scores = return_box_scores_for_date(start_day)
         for box_score in box_scores:
             insert_box_score(box_score)
+
+
+def insert_daily_fantasy_sports_sites():
+    sites = [
+        {'name': 'DraftKings'},
+        {'name': 'FanDuel'}
+    ]
+    for site in sites:
+        DailyFantasySportsSite.objects.get_or_create(name=site['name'])
