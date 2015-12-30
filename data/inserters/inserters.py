@@ -144,7 +144,7 @@ def insert_draftkings_salaries(day):
                 utc_start_time = timezone("US/Eastern").localize(datetime.strptime("{0}{1}{2}{3}".format(day.year, day.month, day.day, start_time), "%Y%m%d%I:%M%p")).astimezone(utc)
                 player_team_abbreviation = draftkings_salary_team_abbreviation_converter(salary[5].upper())
                 player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
-                print home_team_abbreviation, away_team_abbreviation, utc_start_time
+                print home_team_abbreviation, away_team_abbreviation, utc_start_time, start_time
                 game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time=utc_start_time)
                 salary_value = salary[2]
                 PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
