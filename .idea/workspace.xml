@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-28.csv" afterPath="$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-29.csv" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-29.csv" afterPath="$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-30.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/inserters.py" afterPath="$PROJECT_DIR$/data/inserters/inserters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/management/commands/insert_data.py" afterPath="$PROJECT_DIR$/data/management/commands/insert_data.py" />
     </list>
     <ignored path="nba_persistence.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,12 +33,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insert_data.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="insert_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3027523">
-              <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inserters.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.82752293">
+              <caret line="145" column="69" selection-start-line="145" selection-start-column="69" selection-end-line="145" selection-end-column="69" />
+              <folding>
+                <element signature="e#0#108#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,8 +88,8 @@
         <option value="$PROJECT_DIR$/data/inserters/static/salaries/fanduel/2015-12-28.csv" />
         <option value="$PROJECT_DIR$/data/inserters/utils.py" />
         <option value="$PROJECT_DIR$/nba_persistence/settings.py" />
-        <option value="$PROJECT_DIR$/data/inserters/inserters.py" />
         <option value="$PROJECT_DIR$/data/management/commands/insert_data.py" />
+        <option value="$PROJECT_DIR$/data/inserters/inserters.py" />
       </list>
     </option>
   </component>
@@ -823,16 +832,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7174312">
-          <caret line="141" column="62" selection-start-line="141" selection-start-column="62" selection-end-line="141" selection-end-column="62" />
-          <folding>
-            <element signature="e#0#108#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/static/salaries/draftkings/2015-12-29.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24770643">
@@ -851,9 +850,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3027523">
-          <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.82752293">
+          <caret line="145" column="69" selection-start-line="145" selection-start-column="69" selection-end-line="145" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#108#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
