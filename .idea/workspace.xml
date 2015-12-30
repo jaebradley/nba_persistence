@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/utils.py" afterPath="$PROJECT_DIR$/data/inserters/utils.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/inserters.py" afterPath="$PROJECT_DIR$/data/inserters/inserters.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/management/commands/insert_data.py" afterPath="$PROJECT_DIR$/data/management/commands/insert_data.py" />
     </list>
     <ignored path="nba_persistence.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,21 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.25688073">
               <caret line="29" column="171" selection-start-line="29" selection-start-column="171" selection-end-line="29" selection-end-column="171" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="insert_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -47,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="175" column="73" selection-start-line="175" selection-start-column="73" selection-end-line="175" selection-end-column="73" />
+              <caret line="182" column="96" selection-start-line="182" selection-start-column="96" selection-end-line="182" selection-end-column="96" />
               <folding>
                 <element signature="e#0#108#0" expanded="true" />
               </folding>
@@ -55,10 +46,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="utils.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/inserters/utils.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.79816514">
+            <state vertical-scroll-proportion="0.0">
               <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
               <folding />
             </state>
@@ -97,9 +88,9 @@
         <option value="$PROJECT_DIR$/data/models.py" />
         <option value="$PROJECT_DIR$/data/inserters/static/salaries/fanduel/2015-12-28.csv" />
         <option value="$PROJECT_DIR$/nba_persistence/settings.py" />
-        <option value="$PROJECT_DIR$/data/management/commands/insert_data.py" />
-        <option value="$PROJECT_DIR$/data/inserters/inserters.py" />
         <option value="$PROJECT_DIR$/data/inserters/utils.py" />
+        <option value="$PROJECT_DIR$/data/inserters/inserters.py" />
+        <option value="$PROJECT_DIR$/data/management/commands/insert_data.py" />
       </list>
     </option>
   </component>
@@ -814,37 +805,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="171" selection-start-line="29" selection-start-column="171" selection-end-line="29" selection-end-column="171" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33027524">
           <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="175" column="73" selection-start-line="175" selection-start-column="73" selection-end-line="175" selection-end-column="73" />
-          <folding>
-            <element signature="e#0#108#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -872,10 +837,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/inserters/inserters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="182" column="96" selection-start-line="182" selection-start-column="96" selection-end-line="182" selection-end-column="96" />
+          <folding>
+            <element signature="e#0#108#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79816514">
+        <state vertical-scroll-proportion="0.0">
           <caret line="29" column="44" selection-start-line="29" selection-start-column="44" selection-end-line="29" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.27522936">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.25688073">
+          <caret line="29" column="171" selection-start-line="29" selection-start-column="171" selection-end-line="29" selection-end-column="171" />
           <folding />
         </state>
       </provider>
