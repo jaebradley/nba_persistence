@@ -27,7 +27,7 @@ SECRET_KEY = '6hl9l(@et#*n3742w6mxg65*yj$uu*u$q!=4^la^wi%6z+keg5'
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-DATABASES = { 'default' : dj_database_url.config()}
+DATABASES = {'default': dj_database_url.config(default='postgres://@localhost:5432/nba_data')}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
