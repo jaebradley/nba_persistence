@@ -147,7 +147,6 @@ def insert_draftkings_salaries(day):
                 try:
                     player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
                 except ObjectDoesNotExist:
-                    print first_name, last_name, player_team_abbreviation, position_abbreviation
                     position = Position.objects.get(abbreviation=position_abbreviation)
                     team = Team.objects.get(abbreviation=player_team_abbreviation)
                     player, created = Player.objects.get_or_create(position=position, first_name=first_name, last_name=last_name, team=team)
@@ -174,7 +173,6 @@ def insert_fanduel_salaries(day):
                 try:
                     player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
                 except ObjectDoesNotExist:
-                    print first_name, last_name, player_team_abbreviation, position_abbreviation
                     position = Position.objects.get(abbreviation=position_abbreviation)
                     team = Team.objects.get(abbreviation=player_team_abbreviation)
                     player, created = Player.objects.get_or_create(position=position, first_name=first_name, last_name=last_name, team=team)
@@ -182,6 +180,7 @@ def insert_fanduel_salaries(day):
                 day_end_est = day_start_est + timedelta(hours=24)
                 day_start_utc = day_start_est.astimezone(utc)
                 day_end_utc = day_end_est.astimezone(utc)
+                print home_team_abbreviation, away_team_abbreviation, day_start_utc, day_end_utc
                 game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time__gte=day_start_utc, start_time__lte=day_end_utc)
                 salary_value = salary[6]
                 PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
