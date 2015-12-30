@@ -173,6 +173,7 @@ def insert_fanduel_salaries(day):
                 try:
                     player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
                 except ObjectDoesNotExist:
+                    print first_name, last_name, player_team_abbreviation
                     position = Position.objects.get(abbreviation=position_abbreviation)
                     team = Team.objects.get(abbreviation=player_team_abbreviation)
                     player, created = Player.objects.get_or_create(position=position, first_name=first_name, last_name=last_name, team=team)
