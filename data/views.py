@@ -3,8 +3,8 @@ from datetime import datetime
 from pytz import utc
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from data.models import Team, Position, Season, Game, Player, BoxScore, PlayerSalary
-from data.serializers import TeamSerializer, PositionSerializer, SeasonSerializer, GameSerializer, PlayerSerializer, BoxScoreSerializer, PlayerSalarySerializer
+from data.models import Team, Position, Season, Game, Player, BoxScore, PlayerSalary, DailyFantasySportsSite
+from data.serializers import TeamSerializer, PositionSerializer, SeasonSerializer, GameSerializer, PlayerSerializer, BoxScoreSerializer, PlayerSalarySerializer, DailyFantasySportsSiteSerializer
 
 
 # Create your views here.
@@ -142,3 +142,8 @@ class PlayerSalaryViewSet(ReadOnlyModelViewSet):
             queryset = queryset.filter(site__name=site_name)
 
         return queryset
+
+
+class DailyFantasySportsSiteViewSet(ReadOnlyModelViewSet):
+    serializer_class = DailyFantasySportsSite
+    queryset = DailyFantasySportsSite.objects.all().order_by('name')

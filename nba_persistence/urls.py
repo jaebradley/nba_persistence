@@ -19,7 +19,7 @@ from django.contrib import admin
 from rest_framework import routers
 
 import settings
-from data.views import TeamViewSet, PositionViewSet, SeasonViewSet, GameViewSet, BoxScoreViewSet, PlayerViewSet
+from data.views import TeamViewSet, PositionViewSet, SeasonViewSet, GameViewSet, BoxScoreViewSet, PlayerViewSet, DailyFantasySportsSiteViewSet, PlayerSalaryViewSet
 
 team_list = TeamViewSet.as_view({
     'get': 'list'
@@ -68,6 +68,22 @@ box_score_detail = BoxScoreViewSet.as_view({
     'get': 'retrieve'
 })
 
+daily_fantasy_sports_site_list = DailyFantasySportsSiteViewSet.as_view({
+    'get': 'list'
+})
+
+daily_fantasy_sports_site_detail = DailyFantasySportsSiteViewSet.as_view({
+    'get': 'retrieve'
+})
+
+player_salary_list = PlayerSalaryViewSet.as_view({
+    'get': 'list'
+})
+
+player_salary_detail = PlayerSalaryViewSet.as_view({
+    'get': 'retrieve'
+})
+
 router = routers.SimpleRouter()
 
 urlpatterns = [
@@ -83,6 +99,10 @@ urlpatterns = [
     url(r'^games/(?P<pk>[0-9]+)/$', game_detail, name='game-detail'),
     url(r'^box_scores/$', box_score_list, name='box_score-list'),
     url(r'^box_scores/(?P<pk>[0-9]+)/$', box_score_detail, name='box_score-detail'),
+    url(r'^daily_fantasy_sports_sites/$', daily_fantasy_sports_site_list, name='daily_fantasy_sports_site-list'),
+    url(r'^daily_fantasy_sports_sites/(?P<pk>[0-9]+)/$', daily_fantasy_sports_site_detail, name='daily_fantasy_sports_site-detail'),
+    url(r'^player_salaries/$', player_salary_list, name='player_salary-list'),
+    url(r'^player_salaries/(?P<pk>[0-9]+)/$', player_salary_detail, name='player_salary-detail'),
     url(r'^admin/', admin.site.urls),
     url(r'^', include(router.urls)),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
