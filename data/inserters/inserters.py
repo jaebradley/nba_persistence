@@ -1,11 +1,13 @@
-from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
 import csv
-from basketball_reference_web_scraper.readers import return_schedule, return_all_player_season_statistics, return_box_scores_for_date
-from pytz import timezone, utc
-from django.db.models import Q
-from django.core.exceptions import ObjectDoesNotExist
-from datetime import datetime, timedelta
 import os
+from datetime import datetime, timedelta
+
+from basketball_reference_web_scraper.readers import return_schedule, return_all_player_season_statistics, return_box_scores_for_date
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+from pytz import timezone, utc
+
+from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
 from utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter
 
 
@@ -133,7 +135,6 @@ def insert_draftkings_salaries(day):
             salaries = list(reader)[1:]
             site = DailyFantasySportsSite.objects.get(name="DraftKings")
             for salary in salaries:
-                position_abbreviation = salary[0]
                 names_list = salary[1].split(" ")
                 first_name = names_list[0]
                 last_name = names_list[1]
@@ -146,13 +147,11 @@ def insert_draftkings_salaries(day):
                 player_team_abbreviation = draftkings_salary_team_abbreviation_converter(salary[5].upper())
                 try:
                     player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
+                    game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time=utc_start_time)
+                    salary_value = salary[2]
+                    PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
                 except ObjectDoesNotExist:
-                    position = Position.objects.get(abbreviation=position_abbreviation)
-                    team = Team.objects.get(abbreviation=player_team_abbreviation)
-                    player, created = Player.objects.get_or_create(position=position, first_name=first_name, last_name=last_name, team=team)
-                game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time=utc_start_time)
-                salary_value = salary[2]
-                PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
+                    pass
 
 
 def insert_fanduel_salaries(day):
@@ -163,7 +162,6 @@ def insert_fanduel_salaries(day):
             salaries = list(reader)[1:]
             site = DailyFantasySportsSite.objects.get(name="FanDuel")
             for salary in salaries:
-                position_abbreviation = salary[1]
                 first_name = salary[2]
                 last_name = salary[3]
                 game_info_list = salary[7].split("@")
@@ -172,14 +170,20 @@ def insert_fanduel_salaries(day):
                 player_team_abbreviation = fanduel_salary_team_abbreviation_converter(salary[8].upper())
                 try:
                     player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
+                    day_start_est = timezone('US/Eastern').localize(datetime(year=day.year, month=day.month, day=day.day, hour=0, minute=0, second=0, microsecond=0))
+                    day_end_est = day_start_est + timedelta(hours=24)
+                    day_start_utc = day_start_est.astimezone(utc)
+                    day_end_utc = day_end_est.astimezone(utc)
+                    game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time__gte=day_start_utc, start_time__lte=day_end_utc)
+                    salary_value = salary[6]
+                    PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
                 except ObjectDoesNotExist:
-                    position = Position.objects.get(abbreviation=position_abbreviation)
-                    team = Team.objects.get(abbreviation=player_team_abbreviation)
-                    player, created = Player.objects.get_or_create(position=position, first_name=first_name, last_name=last_name, team=team)
-                day_start_est = timezone('US/Eastern').localize(datetime(year=day.year, month=day.month, day=day.day, hour=0, minute=0, second=0, microsecond=0))
-                day_end_est = day_start_est + timedelta(hours=24)
-                day_start_utc = day_start_est.astimezone(utc)
-                day_end_utc = day_end_est.astimezone(utc)
-                game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time__gte=day_start_utc, start_time__lte=day_end_utc)
-                salary_value = salary[6]
-                PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
+                    pass
+
+
+def insert_dfs_salaries(start_date, end_date):
+    day = start_date
+    while day <= end_date:
+        insert_draftkings_salaries(day)
+        insert_fanduel_salaries(day)
+        day = day + timedelta(days=1)
