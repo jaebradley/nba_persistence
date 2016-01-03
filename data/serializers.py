@@ -1,4 +1,4 @@
-from data.models import Team, Position, Season, Game, Player, BoxScore
+from data.models import Team, Position, Season, Game, Player, BoxScore, PlayerSalary
 from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializer
 
 
@@ -39,3 +39,9 @@ class BoxScoreSerializer(HyperlinkedModelSerializer):
                   'three_point_field_goal_attempts', 'free_throws', 'free_throw_attempts', 'offensive_rebounds',
                   'defensive_rebounds', 'total_rebounds', 'assists', 'steals', 'blocks', 'turnovers', 'fouls_committed',
                   'points', 'draftkings_points')
+
+
+class PlayerSalarySerializer(HyperlinkedModelSerializer):
+    class Meta:
+        model = PlayerSalary
+        fields = ('site', 'game', 'player', 'salary')

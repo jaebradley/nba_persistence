@@ -3,8 +3,8 @@ from datetime import datetime
 from pytz import utc
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from data.models import Team, Position, Season, Game, Player, BoxScore
-from data.serializers import TeamSerializer, PositionSerializer, SeasonSerializer, GameSerializer, PlayerSerializer, BoxScoreSerializer
+from data.models import Team, Position, Season, Game, Player, BoxScore, PlayerSalary
+from data.serializers import TeamSerializer, PositionSerializer, SeasonSerializer, GameSerializer, PlayerSerializer, BoxScoreSerializer, PlayerSalarySerializer
 
 
 # Create your views here.
@@ -100,7 +100,6 @@ class BoxScoreViewSet(ReadOnlyModelViewSet):
         team_abbreviation = self.request.query_params.get('team_abbreviation', None)
         unix_start_time = self.request.query_params.get('unix_start_time', None)
         unix_end_time = self.request.query_params.get('unix_end_time', None)
-        print first_name
 
         if first_name is not None:
             queryset = queryset.filter(player__first_name=first_name)
@@ -116,5 +115,30 @@ class BoxScoreViewSet(ReadOnlyModelViewSet):
 
         if unix_end_time is not None:
             queryset = queryset.filter(datetime.fromtimestamp(unix_end_time, utc))
+
+        return queryset
+
+
+class PlayerSalaryViewSet(ReadOnlyModelViewSet):
+    serializer_class = PlayerSalarySerializer
+
+    def get_queryset(self):
+        queryset = PlayerSalary.objects.all().order_by('site').order_by('-salary').order_by('-game__start_time')
+        salary_min = self.request.query_params.get('salary_min', None)
+        salary_max = self.request.query_params.get('salary_max', None)
+        position_abbreviation = self.request.query_params.get('position_abbreviation', None)
+        site_name = self.request.query_params.get('site_name', None)
+
+        if salary_min is not None:
+            queryset = queryset.filter(salary__gte=salary_min)
+
+        if salary_max is not None:
+            queryset = queryset.filter(salary__lte=salary_max)
+
+        if position_abbreviation is not None:
+            queryset = queryset.filter(player__position__abbreviation=position_abbreviation)
+
+        if site_name is not None:
+            queryset = queryset.filter(site__name=site_name)
 
         return queryset
