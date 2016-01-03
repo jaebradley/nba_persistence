@@ -45,7 +45,7 @@ class BoxScoreSerializer(HyperlinkedModelSerializer):
 class DailyFantasySportsSiteSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = DailyFantasySportsSite
-        fields = ('name')
+        fields = ('name',)
 
 
 class PlayerSalarySerializer(HyperlinkedModelSerializer):
