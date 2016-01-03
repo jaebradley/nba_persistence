@@ -94,7 +94,7 @@ class BoxScoreViewSet(ReadOnlyModelViewSet):
     serializer_class = BoxScoreSerializer
 
     def get_queryset(self):
-        queryset = BoxScore.objects.all().order_by('-game__start_time').order_by('player__last_name').order_by('player__first_name')
+        queryset = BoxScore.objects.all().order_by('player__last_name').order_by('player__first_name').order_by('-game__start_time')
         first_name = self.request.query_params.get('first_name', None)
         last_name = self.request.query_params.get('last_name', None)
         team_abbreviation = self.request.query_params.get('team_abbreviation', None)
