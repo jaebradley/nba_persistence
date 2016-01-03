@@ -146,4 +146,12 @@ class PlayerSalaryViewSet(ReadOnlyModelViewSet):
 
 class DailyFantasySportsSiteViewSet(ReadOnlyModelViewSet):
     serializer_class = DailyFantasySportsSiteSerializer
-    queryset = DailyFantasySportsSite.objects.all().order_by('name')
+
+    def get_queryset(self):
+        queryset = DailyFantasySportsSite.objects.all().order_by('name')
+        name = self.request.query_params.get('name', None)
+
+        if name is not None:
+            queryset = queryset.filter(name=name)
+
+        return queryset
