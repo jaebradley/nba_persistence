@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/views.py" afterPath="$PROJECT_DIR$/data/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nba_persistence/settings.py" afterPath="$PROJECT_DIR$/nba_persistence/settings.py" />
     </list>
     <ignored path="nba_persistence.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.47272727">
+              <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
               <folding>
                 <element signature="e#314#323#0" expanded="true" />
               </folding>
@@ -61,10 +61,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47272727">
+            <state vertical-scroll-proportion="0.0">
               <caret line="125" column="66" selection-start-line="125" selection-start-column="66" selection-end-line="125" selection-end-column="66" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
@@ -102,13 +102,13 @@
         <option value="$PROJECT_DIR$/data/models.py" />
         <option value="$PROJECT_DIR$/data/inserters/static/salaries/fanduel/2015-12-28.csv" />
         <option value="$PROJECT_DIR$/data/inserters/utils.py" />
-        <option value="$PROJECT_DIR$/nba_persistence/settings.py" />
         <option value="$PROJECT_DIR$/data/management/commands/insert_data.py" />
         <option value="$PROJECT_DIR$/data/management/commands/insert_dfs_values.py" />
         <option value="$PROJECT_DIR$/data/inserters/inserters.py" />
         <option value="$PROJECT_DIR$/data/serializers.py" />
         <option value="$PROJECT_DIR$/nba_persistence/urls.py" />
         <option value="$PROJECT_DIR$/data/views.py" />
+        <option value="$PROJECT_DIR$/nba_persistence/settings.py" />
       </list>
     </option>
   </component>
@@ -1024,22 +1024,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
+    <entry file="file://$PROJECT_DIR$/data/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
+          <caret line="125" column="66" selection-start-line="125" selection-start-column="66" selection-end-line="125" selection-end-column="66" />
           <folding>
-            <element signature="e#314#323#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/views.py">
+    <entry file="file://$PROJECT_DIR$/nba_persistence/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.47272727">
-          <caret line="125" column="66" selection-start-line="125" selection-start-column="66" selection-end-line="125" selection-end-column="66" />
+          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#314#323#0" expanded="true" />
           </folding>
         </state>
       </provider>
