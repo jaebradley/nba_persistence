@@ -123,7 +123,7 @@ class PlayerSalaryViewSet(ReadOnlyModelViewSet):
     serializer_class = PlayerSalarySerializer
 
     def get_queryset(self):
-        queryset = PlayerSalary.objects.all().order_by('site').order_by('-salary').order_by('-game__start_time')
+        queryset = PlayerSalary.objects.all().order_by('site__name').order_by('-salary').order_by('-game__start_time')
         salary_min = self.request.query_params.get('salary_min', None)
         salary_max = self.request.query_params.get('salary_max', None)
         position_abbreviation = self.request.query_params.get('position_abbreviation', None)
@@ -145,5 +145,5 @@ class PlayerSalaryViewSet(ReadOnlyModelViewSet):
 
 
 class DailyFantasySportsSiteViewSet(ReadOnlyModelViewSet):
-    serializer_class = DailyFantasySportsSite
+    serializer_class = DailyFantasySportsSiteSerializer
     queryset = DailyFantasySportsSite.objects.all().order_by('name')
