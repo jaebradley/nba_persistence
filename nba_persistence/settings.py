@@ -47,7 +47,12 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework_jsonp.renderers.JSONPRenderer',
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    )
 }
 
 MIDDLEWARE_CLASSES = [
