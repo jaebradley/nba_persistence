@@ -1,39 +1,49 @@
-from rest_framework.serializers import HyperlinkedModelSerializer
+from rest_framework.serializers import ModelSerializer
 
 from data.models import Team, Position, Season, Game, Player, BoxScore, PlayerSalary, DailyFantasySportsSite
 
 
-class PositionSerializer(HyperlinkedModelSerializer):
+class PositionSerializer(ModelSerializer):
     class Meta:
-        model = Position
+        model = Position()
         fields = ('name', 'abbreviation')
 
 
-class TeamSerializer(HyperlinkedModelSerializer):
+class TeamSerializer(ModelSerializer):
     class Meta:
-        model = Team
+        model = Team()
         fields = ('name', 'abbreviation')
 
 
-class SeasonSerializer(HyperlinkedModelSerializer):
+class SeasonSerializer(ModelSerializer):
     class Meta:
-        model = Season
-        fields = ('start_year')
+        model = Season()
+        fields = ('start_year',)
 
 
-class GameSerializer(HyperlinkedModelSerializer):
+class GameSerializer(ModelSerializer):
+    home_team = TeamSerializer()
+    away_team = TeamSerializer()
+    season = SeasonSerializer()
+
     class Meta:
-        model = Game
+        model = Game()
         fields = ('home_team', 'away_team', 'start_time', 'season')
 
 
-class PlayerSerializer(HyperlinkedModelSerializer):
+class PlayerSerializer(ModelSerializer):
+    team = TeamSerializer()
+    position = PositionSerializer()
+
     class Meta:
-        model = Player
+        model = Player()
         fields = ('first_name', 'last_name', 'team', 'position')
 
 
-class BoxScoreSerializer(HyperlinkedModelSerializer):
+class BoxScoreSerializer(ModelSerializer):
+    player = PlayerSerializer()
+    game = GameSerializer()
+
     class Meta:
         model = BoxScore
         fields = ('player', 'game', 'seconds_played', 'field_goals', 'field_goal_attempts', 'three_point_field_goals',
@@ -42,13 +52,17 @@ class BoxScoreSerializer(HyperlinkedModelSerializer):
                   'points', 'draftkings_points')
 
 
-class DailyFantasySportsSiteSerializer(HyperlinkedModelSerializer):
+class DailyFantasySportsSiteSerializer(ModelSerializer):
     class Meta:
         model = DailyFantasySportsSite
         fields = ('name',)
 
 
-class PlayerSalarySerializer(HyperlinkedModelSerializer):
+class PlayerSalarySerializer(ModelSerializer):
+    site = DailyFantasySportsSiteSerializer()
+    game = GameSerializer()
+    player = PlayerSerializer()
+
     class Meta:
         model = PlayerSalary
         fields = ('site', 'game', 'player', 'salary')
