@@ -35,7 +35,7 @@ def insert_positions():
         }
     ]
     for position in positions:
-        Position.objects.get_or_create(name=position['name'], abbreviation=position['abbreviation'])
+        Position.objects.update_or_create(name=position['name'], abbreviation=position['abbreviation'])
 
 
 def insert_teams(team_name_csv):
@@ -43,7 +43,7 @@ def insert_teams(team_name_csv):
         reader = csv.reader(file)
         nba_team_name_list = list(reader)[1:]
         for team in nba_team_name_list:
-            Team.objects.get_or_create(name=team[2], abbreviation=team[1])
+            Team.objects.update_or_create(name=team[2], abbreviation=team[1])
 
 
 def insert_schedules(first_season_start_year, last_season_start_year):
@@ -53,7 +53,7 @@ def insert_schedules(first_season_start_year, last_season_start_year):
         for event in season_schedule.parsed_event_list:
             home_team = Team.objects.get(name=event.home_team_name)
             away_team = Team.objects.get(name=event.visiting_team_name)
-            Game.objects.get_or_create(home_team=home_team, away_team=away_team, start_time=event.start_time, season=season)
+            Game.objects.update_or_create(home_team=home_team, away_team=away_team, start_time=event.start_time, season=season)
 
 
 def insert_players(season_start_year):
@@ -69,7 +69,7 @@ def insert_players(season_start_year):
         else:
             player_position = player_season.position
         position = Position.objects.get(abbreviation=player_position)
-        Player.objects.get_or_create(first_name=player_season.first_name, last_name=player_season.last_name, team=team, position=position)
+        Player.objects.update_or_create(first_name=player_season.first_name, last_name=player_season.last_name, team=team, position=position)
 
 
 def insert_box_score(box_score):
@@ -82,7 +82,7 @@ def insert_box_score(box_score):
         opponent = Team.objects.get(abbreviation=box_score.opponent)
         player = Player.objects.filter(first_name=box_score.first_name).filter(last_name=box_score.last_name).get(team=team)
         game = Game.objects.filter((Q(home_team=team) & Q(away_team=opponent)) | (Q(home_team=opponent) & Q(away_team=team))).filter(start_time__gte=day_start_utc).get(start_time__lte=day_end_utc)
-        BoxScore.objects.get_or_create(
+        BoxScore.objects.update_or_create(
             player=player,
             game=game,
             seconds_played=box_score.seconds_played,
@@ -124,7 +124,7 @@ def insert_daily_fantasy_sports_sites():
         {'name': 'FanDuel'}
     ]
     for site in sites:
-        DailyFantasySportsSite.objects.get_or_create(name=site['name'])
+        DailyFantasySportsSite.objects.update_or_create(name=site['name'])
 
 
 def insert_draftkings_salaries(day):
@@ -149,7 +149,7 @@ def insert_draftkings_salaries(day):
                     player = Player.objects.get(first_name=first_name, last_name=last_name, team__abbreviation=player_team_abbreviation)
                     game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time=utc_start_time)
                     salary_value = salary[2]
-                    PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
+                    PlayerSalary.objects.update_or_create(site=site, player=player, game=game, salary=salary_value)
                 except ObjectDoesNotExist:
                     pass
 
@@ -176,7 +176,7 @@ def insert_fanduel_salaries(day):
                     day_end_utc = day_end_est.astimezone(utc)
                     game = Game.objects.get(home_team__abbreviation=home_team_abbreviation, away_team__abbreviation=away_team_abbreviation, start_time__gte=day_start_utc, start_time__lte=day_end_utc)
                     salary_value = salary[6]
-                    PlayerSalary.objects.get_or_create(site=site, player=player, game=game, salary=salary_value)
+                    PlayerSalary.objects.update_or_create(site=site, player=player, game=game, salary=salary_value)
                 except ObjectDoesNotExist:
                     pass
 
