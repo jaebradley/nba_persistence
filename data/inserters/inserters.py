@@ -8,7 +8,7 @@ from django.db.models import Q
 from pytz import timezone, utc
 
 from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
-from utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter
+from utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter
 
 
 def insert_positions():
@@ -128,8 +128,10 @@ def insert_daily_fantasy_sports_sites():
 
 
 def insert_draftkings_salaries(day):
-    draftkings_file_name = os.path.join(os.path.dirname(__file__), "static/salaries/draftkings/{0}-{1}-{2}.csv".format(day.year, day.month, day.day))
+    draftkings_file_name = os.path.join(os.path.dirname(__file__), "static/salaries/draftkings/{0}.csv".format(day.strftime("%Y-%m-%d")))
+    draftkings_log_file_name = os.path.join(os.path.dirname(__file__), "static/salaries/draftkings.log")
     if os.path.isfile(draftkings_file_name):
+        log_file = open(draftkings_log_file_name, "w+")
         with open(draftkings_file_name) as file:
             reader = csv.reader(file)
             salaries = list(reader)[1:]
@@ -138,6 +140,9 @@ def insert_draftkings_salaries(day):
                 names_list = salary[1].split(" ")
                 first_name = names_list[0]
                 last_name = names_list[1]
+                converted_names = draftkings_player_name_converter(first_name, last_name)
+                first_name = converted_names['first_name']
+                last_name = converted_names['last_name']
                 game_info_list = salary[3].split(" ")
                 team_abbreviation_list = game_info_list[0].split("@")
                 away_team_abbreviation = draftkings_salary_team_abbreviation_converter(team_abbreviation_list[0])
@@ -151,12 +156,16 @@ def insert_draftkings_salaries(day):
                     salary_value = salary[2]
                     PlayerSalary.objects.update_or_create(site=site, player=player, game=game, salary=salary_value)
                 except ObjectDoesNotExist:
-                    pass
+                    log_message = "{0} - {1} - {2}\n".format(first_name, last_name, player_team_abbreviation)
+                    log_file.write(log_message)
+        log_file.close()
 
 
 def insert_fanduel_salaries(day):
-    fanduel_file_name = os.path.join(os.path.dirname(__file__), "static/salaries/fanduel/{0}-{1}-{2}.csv".format(day.year, day.month, day.day))
+    fanduel_file_name = os.path.join(os.path.dirname(__file__), "static/salaries/fanduel/{0}.csv".format(day.strftime("%Y-%m-%d")))
+    fanduel_log_file_name = os.path.join(os.path.dirname(__file__), "static/salaries/fanduel.log")
     if os.path.isfile(fanduel_file_name):
+        log_file = open(fanduel_log_file_name, "w+")
         with open(fanduel_file_name) as file:
             reader = csv.reader(file)
             salaries = list(reader)[1:]
@@ -178,7 +187,9 @@ def insert_fanduel_salaries(day):
                     salary_value = salary[6]
                     PlayerSalary.objects.update_or_create(site=site, player=player, game=game, salary=salary_value)
                 except ObjectDoesNotExist:
-                    pass
+                    log_message = "{0} - {1} - {2}\n".format(first_name, last_name, player_team_abbreviation)
+                    log_file.write(log_message)
+        log_file.close()
 
 
 def insert_dfs_salaries(start_date, end_date):

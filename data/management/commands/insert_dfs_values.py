@@ -7,4 +7,7 @@ from pytz import timezone
 class Command(BaseCommand):
     def handle(self, *args, **options):
         insert_daily_fantasy_sports_sites()
-        insert_dfs_salaries(start_date=datetime(year=2015, month=12, day=29, tzinfo=timezone("US/Eastern")), end_date=datetime.now(tz=timezone("US/Eastern")))
+        insert_dfs_salaries(
+            start_date=timezone('US/Eastern').localize(datetime(year=2015, month=12, day=29)),
+            end_date=timezone('US/Eastern').localize(datetime.now())
+        )

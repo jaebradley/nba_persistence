@@ -111,10 +111,10 @@ class BoxScoreViewSet(ReadOnlyModelViewSet):
             queryset = queryset.filter(team__abbreviation=team_abbreviation)
 
         if unix_start_time is not None:
-            queryset = queryset.filter(datetime.fromtimestamp(unix_start_time, utc))
+            queryset = queryset.filter(game__start_time__gte=datetime.fromtimestamp(unix_start_time, utc))
 
         if unix_end_time is not None:
-            queryset = queryset.filter(datetime.fromtimestamp(unix_end_time, utc))
+            queryset = queryset.filter(game__start_time__lte=datetime.fromtimestamp(unix_end_time, utc))
 
         return queryset
 
@@ -128,6 +128,8 @@ class PlayerSalaryViewSet(ReadOnlyModelViewSet):
         salary_max = self.request.query_params.get('salary_max', None)
         position_abbreviation = self.request.query_params.get('position_abbreviation', None)
         site_name = self.request.query_params.get('site_name', None)
+        unix_start_time = self.request.query_params.get('unix_start_time', None)
+        unix_end_time = self.request.query_params.get('unix_end_time', None)
 
         if salary_min is not None:
             queryset = queryset.filter(salary__gte=salary_min)
@@ -140,6 +142,12 @@ class PlayerSalaryViewSet(ReadOnlyModelViewSet):
 
         if site_name is not None:
             queryset = queryset.filter(site__name=site_name)
+
+        if unix_start_time is not None:
+            queryset = queryset.filter(game__start_time__gte=datetime.fromtimestamp(unix_start_time, utc))
+
+        if unix_end_time is not None:
+            queryset = queryset.filter(game__start_time__lte=datetime.fromtimestamp(unix_end_time, utc))
 
         return queryset
 
