@@ -55,10 +55,10 @@ class GameViewSet(ReadOnlyModelViewSet):
             queryset = queryset.filter(away_team__abbreviation=away_team_abbreviation)
 
         if unix_start_time is not None:
-            queryset = queryset.filter(start_time__gte=datetime.fromtimestamp(unix_start_time, utc))
+            queryset = queryset.filter(start_time__gte=datetime.fromtimestamp(float(unix_start_time), utc))
 
         if unix_end_time is not None:
-            queryset = queryset.filter(start_time__lte=datetime.fromtimestamp(unix_end_time, utc))
+            queryset = queryset.filter(start_time__lte=datetime.fromtimestamp(float(unix_end_time), utc))
 
         if season_start_year is not None:
             queryset = queryset.filter(season__start_year=season_start_year)
@@ -111,10 +111,10 @@ class BoxScoreViewSet(ReadOnlyModelViewSet):
             queryset = queryset.filter(team__abbreviation=team_abbreviation)
 
         if unix_start_time is not None:
-            queryset = queryset.filter(game__start_time__gte=datetime.fromtimestamp(unix_start_time, utc))
+            queryset = queryset.filter(game__start_time__gte=datetime.fromtimestamp(float(unix_start_time), utc))
 
         if unix_end_time is not None:
-            queryset = queryset.filter(game__start_time__lte=datetime.fromtimestamp(unix_end_time, utc))
+            queryset = queryset.filter(game__start_time__lte=datetime.fromtimestamp(float(unix_end_time), utc))
 
         return queryset
 
@@ -144,10 +144,10 @@ class PlayerSalaryViewSet(ReadOnlyModelViewSet):
             queryset = queryset.filter(site__name=site_name)
 
         if unix_start_time is not None:
-            queryset = queryset.filter(game__start_time__gte=datetime.fromtimestamp(unix_start_time, utc))
+            queryset = queryset.filter(game__start_time__gte=datetime.fromtimestamp(float(unix_start_time), utc))
 
         if unix_end_time is not None:
-            queryset = queryset.filter(game__start_time__lte=datetime.fromtimestamp(unix_end_time, utc))
+            queryset = queryset.filter(game__start_time__lte=datetime.fromtimestamp(float(unix_end_time), utc))
 
         return queryset
 
