@@ -73,7 +73,7 @@ class PlayerSalary(Model):
     site = ForeignKey(DailyFantasySportsSite, on_delete=CASCADE)
     game = ForeignKey(Game, on_delete=CASCADE)
     player = ForeignKey(Player, on_delete=CASCADE)
-    salary = FloatField()
+    salary = IntegerField()
 
     class Meta:
         unique_together = ('site', 'game', 'player', 'salary')
