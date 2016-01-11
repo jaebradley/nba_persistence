@@ -8,6 +8,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         insert_daily_fantasy_sports_sites()
         insert_dfs_salaries(
-            start_date=timezone('US/Eastern').localize(datetime(year=2015, month=12, day=29)),
+            start_date=timezone('US/Eastern').localize(datetime(year=2016, month=01, day=03)),
             end_date=timezone('US/Eastern').localize(datetime.now())
         )
