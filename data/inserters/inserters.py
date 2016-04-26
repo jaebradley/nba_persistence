@@ -6,21 +6,26 @@ from basketball_reference_web_scraper.readers import return_schedule, return_all
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from pytz import timezone, utc
-from data.positions.nba import positions as nba_positions
-from data.teams.nba import teams as nba_teams
 
+from data.dfs_sites.sites import sites as dfs_sites
 from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
 from utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
 
 
-def insert_positions():
-    for position in nba_positions:
-        Position.objects.update_or_create(name=position['name'], abbreviation=position['abbreviation'])
+def insert_positions(positions):
+    for position in positions:
+        if 'name' in position or 'abbreviation' in position:
+            Position.objects.update_or_create(name=position['name'], abbreviation=position['abbreviation'])
+        else:
+            raise ValueError('position must have both name and abbreviation')
 
 
-def insert_teams(team_name_csv):
-        for team in nba_teams:
+def insert_teams(teams):
+    for team in teams:
+        if 'name' in team or 'abbreviation' in team:
             Team.objects.update_or_create(name=team['name'], abbreviation=team['abbreviation'])
+        else:
+            raise ValueError('team must have both name and abbreviation')
 
 
 def insert_schedules(first_season_start_year, last_season_start_year):
@@ -96,11 +101,7 @@ def insert_box_scores(minimum_date, maximum_date):
 
 
 def insert_daily_fantasy_sports_sites():
-    sites = [
-        {'name': 'DraftKings'},
-        {'name': 'FanDuel'}
-    ]
-    for site in sites:
+    for site in dfs_sites:
         DailyFantasySportsSite.objects.update_or_create(name=site['name'])
 
 
