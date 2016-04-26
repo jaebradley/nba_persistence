@@ -6,44 +6,21 @@ from basketball_reference_web_scraper.readers import return_schedule, return_all
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from pytz import timezone, utc
+from data.positions.nba import positions as nba_positions
+from data.teams.nba import teams as nba_teams
 
 from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
 from utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
 
 
 def insert_positions():
-    positions = [
-        {
-            'name': 'Point Guard',
-            'abbreviation': 'PG'
-        },
-        {
-            'name': 'Shooting Guard',
-            'abbreviation': 'SG'
-        },
-        {
-            'name': 'Small Forward',
-            'abbreviation': 'SF'
-        },
-        {
-            'name': 'Power Forward',
-            'abbreviation': 'PF'
-        },
-        {
-            'name': 'Center',
-            'abbreviation': 'C'
-        }
-    ]
-    for position in positions:
+    for position in nba_positions:
         Position.objects.update_or_create(name=position['name'], abbreviation=position['abbreviation'])
 
 
 def insert_teams(team_name_csv):
-    with open(team_name_csv) as file:
-        reader = csv.reader(file)
-        nba_team_name_list = list(reader)[1:]
-        for team in nba_team_name_list:
-            Team.objects.update_or_create(name=team[2], abbreviation=team[1])
+        for team in nba_teams:
+            Team.objects.update_or_create(name=team['name'], abbreviation=team['abbreviation'])
 
 
 def insert_schedules(first_season_start_year, last_season_start_year):
