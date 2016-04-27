@@ -32,22 +32,3 @@ def translate_players(season_start_year):
     return filtered_players
 
 
-def is_valid_box_score(box_score):
-    return 'seconds_played' in box_score and \
-            'field_goals' in box_score and \
-            'three_point_field_goals' in box_score and \
-            'three_point_field_goal_attempts' in box_score and \
-            'free_throws' in box_score and \
-            'fhree_throw_attempts' in box_score and \
-            'offensive_rebounds' in box_score and \
-            'defensive_rebounds' in box_score and \
-            'total_rebounds' in box_score and \
-            'assists' in box_score and \
-            'steals' in box_score and \
-            'blocks' in box_score and \
-            'turnovers' in box_score and \
-            'personal_fouls' in box_score and \
-            'points' in box_score
-
-def translate_box_score_to_draftkings_points(boxscore):
-    
