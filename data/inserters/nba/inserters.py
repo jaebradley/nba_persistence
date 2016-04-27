@@ -31,5 +31,9 @@ def insert_box_score(box_score):
             )
 
 
+def insert_box_scores(minimum_date, maximum_date):
+    translated_box_scores = nba_translators.translate_box_scores(minimum_date=minimum_date, maximum_date=maximum_date)
+    for box_score in translated_box_scores:
+        insert_box_score(box_score=box_score)
 
 

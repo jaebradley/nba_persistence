@@ -2,13 +2,12 @@ import csv
 import os
 from datetime import datetime, timedelta
 
-from basketball_reference_web_scraper.readers import return_schedule, return_all_player_season_statistics, return_box_scores_for_date
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Q
 from pytz import timezone, utc
 
+import data.validators.util as util_validators
 from data.dfs_sites.sites import sites as dfs_sites
-from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
+from data.models import Position, Team, Game, Player, DailyFantasySportsSite, PlayerSalary
 from utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
 
 
@@ -28,78 +27,26 @@ def insert_teams(teams):
             raise ValueError('team must have both name and abbreviation')
 
 
-def insert_schedules(first_season_start_year, last_season_start_year):
-    for season_start_year in range(first_season_start_year, last_season_start_year + 1):
-        season, created = Season.objects.get_or_create(start_year=season_start_year)
-        season_schedule = return_schedule(season_start_year)
-        for event in season_schedule.parsed_event_list:
-            home_team = Team.objects.get(name=event.home_team_name)
-            away_team = Team.objects.get(name=event.visiting_team_name)
-            Game.objects.update_or_create(home_team=home_team, away_team=away_team, start_time=event.start_time, season=season)
-
-
-def is_valid_player(player):
-    return 'team' in player and \
-            'position' in player and \
-            'first_name' in player and \
-            'last_name' in player
+def insert_games(games):
+    for game in games:
+        if not util_validators.is_valid_game(game=game):
+            raise ValueError('invalid game')
+        else:
+            Game.objects.update_or_create(home_team=game.home_team,
+                                          away_team=game.away_team,
+                                          start_time=game.start_time,
+                                          season=game.season)
 
 
 def insert_players(players):
     for player in players:
-        if not is_valid_player(player):
+        if not util_validators.is_valid_player(player=player):
             raise ValueError('player is missing team, position, first name, or last name')
         else:
             Player.objects.update_or_create(first_name=player.first_name,
                                             last_name=player.last_name,
                                             team=player.team,
                                             position=player.position)
-
-
-def insert_box_score(box_score):
-    day_start_est = timezone('US/Eastern').localize(datetime(year=box_score.date.year, month=box_score.date.month, day=box_score.date.day, hour=0, minute=0, second=0, microsecond=0))
-    day_end_est = day_start_est + timedelta(hours=24)
-    day_start_utc = day_start_est.astimezone(utc)
-    day_end_utc = day_end_est.astimezone(utc)
-    try:
-        team = Team.objects.get(abbreviation=box_score.team)
-        opponent = Team.objects.get(abbreviation=box_score.opponent)
-        player = Player.objects.filter(first_name=box_score.first_name).filter(last_name=box_score.last_name).get(team=team)
-        game = Game.objects.filter((Q(home_team=team) & Q(away_team=opponent)) | (Q(home_team=opponent) & Q(away_team=team))).filter(start_time__gte=day_start_utc).get(start_time__lte=day_end_utc)
-        BoxScore.objects.update_or_create(
-            player=player,
-            game=game,
-            seconds_played=box_score.seconds_played,
-            field_goals=box_score.field_goals,
-            field_goal_attempts=box_score.field_goal_attempts,
-            three_point_field_goals=box_score.three_point_field_goals,
-            three_point_field_goal_attempts=box_score.three_point_field_goal_attempts,
-            free_throws=box_score.free_throws,
-            free_throw_attempts=box_score.free_throw_attempts,
-            offensive_rebounds=box_score.offensive_rebounds,
-            defensive_rebounds=box_score.defensive_rebounds,
-            total_rebounds=box_score.total_rebounds,
-            assists=box_score.assists,
-            steals=box_score.steals,
-            blocks=box_score.blocks,
-            turnovers=box_score.turnovers,
-            fouls_committed=box_score.personal_fouls,
-            points=box_score.points,
-            draftkings_points=float(box_score.points) + float(box_score.three_point_field_goals) * 0.5 + float(box_score.total_rebounds) * 1.25 + float(box_score.assists) * 1.5 + float(box_score.steals) * 2 + float(box_score.blocks) * 2 - float(box_score.turnovers) * 0.5
-        )
-    except ObjectDoesNotExist:
-        pass
-
-
-def insert_box_scores(minimum_date, maximum_date):
-    games = Game.objects.filter(start_time__gte=minimum_date).filter(start_time__lte=maximum_date).filter(boxscore__isnull=True)
-    distinct_start_days = set()
-    for game in games:
-        distinct_start_days.add(game.start_time.replace(tzinfo=timezone('US/Eastern')).date())
-    for start_day in distinct_start_days:
-        box_scores = return_box_scores_for_date(start_day)
-        for box_score in box_scores:
-            insert_box_score(box_score)
 
 
 def insert_daily_fantasy_sports_sites():

@@ -1,10 +1,11 @@
-from basketball_reference_web_scraper.readers import return_all_player_season_statistics
+from basketball_reference_web_scraper.readers import return_all_player_season_statistics, return_box_scores_for_date, return_schedule
 from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
-from data.inserters.inserters import is_valid_player
 import data.translators.util as util_translators
 import data.validators.nba as nba_validators
+import data.validators.util as util_validators
 import data.calculators.nba as nba_calculators
 from django.db.models import Q
+import datetime
 
 
 def translate_position(position):
@@ -21,7 +22,7 @@ def translate_position(position):
 def translate_players(season_start_year):
     filtered_players = []
     for player in return_all_player_season_statistics(season_start_year=season_start_year):
-        if not is_valid_player(player):
+        if not util_validators.is_valid_player(player):
             raise ValueError('player is missing team, position, first name, or last name')
         else:
             team = Team.objects.get(abbreviation=player.team)
@@ -59,4 +60,37 @@ def translate_box_score(box_score):
         box_score['game'] = game
         box_score['draftkings_points'] = draftkings_points
         return box_score
+
+
+def translate_box_scores(minimum_date, maximum_date):
+    translated_box_scores = []
+    games = Game.objects.filter(start_time__gte=minimum_date)\
+                        .filter(start_time__lte=maximum_date)\
+                        .filter(boxscore__isnull=True)
+    distinct_start_days = set()
+    for game in games:
+        distinct_start_days.add(game.start_time.replace(tzinfo=datetime.timezone('US/Eastern')).date())
+    for start_day in distinct_start_days:
+        box_scores = return_box_scores_for_date(start_day)
+        for box_score in box_scores:
+            translated_box_scores.append(translate_box_score(box_score=box_score))
+    return translated_box_scores
+
+
+def translate_seasons_to_games(first_season_start_year, last_season_start_year):
+    translated_games = []
+    for season_start_year in range(first_season_start_year, last_season_start_year + 1):
+        season, created = Season.objects.get_or_create(start_year=season_start_year)
+        season_schedule = return_schedule(season_start_year)
+        for event in season_schedule.parsed_event_list:
+            home_team = Team.objects.get(name=event.home_team_name)
+            away_team = Team.objects.get(name=event.visiting_team_name)
+            translated_games.append({
+              'home_team': home_team,
+              'away_team': away_team,
+              'start_time': event.start_time,
+              'season': season
+            })
+    return translated_games
+
 
