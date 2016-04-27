@@ -14,17 +14,17 @@ DRAFTKINGS_SCORING_VALUES = {
 }
 
 
-def calculate_draftkings_points(boxscore):
-    if not nba_validators.is_valid_box_score(boxscore):
+def calculate_draftkings_points(box_score):
+    if not nba_validators.is_valid_box_score(box_score):
         raise ValueError('illegal boxscore')
     else:
         score = 0
-        if nba_validators.is_double_double(box_score=boxscore):
+        if nba_validators.is_double_double(box_score=box_score):
             score += DRAFTKINGS_SCORING_VALUES['DOUBLE_DOUBLE']
-        elif nba_validators.is_triple_double(box_score=boxscore):
+        elif nba_validators.is_triple_double(box_score=box_score):
             score += DRAFTKINGS_SCORING_VALUES['TRIPLE_DOUBLE']
 
-        for key, value in boxscore.iteritems():
+        for key, value in box_score.iteritems():
             multiplier = None
             if key is nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['POINTS']:
                 multiplier = DRAFTKINGS_SCORING_VALUES['POINT']
@@ -48,6 +48,6 @@ def calculate_draftkings_points(boxscore):
                 multiplier = DRAFTKINGS_SCORING_VALUES['TURNOVER']
 
             if multiplier is not None:
-                score *= multiplier * value
+                score *= float(multiplier) * value
 
         return score

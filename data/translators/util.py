@@ -2,7 +2,7 @@ import pytz
 import datetime
 
 
-def translate_day_start_and_end_from_est_to_utc(year, month, day):
+def translate_day_start_from_est_to_utc(year, month, day):
     day_start_est = pytz.timezone('US/Eastern')\
                         .localize(datetime.datetime(year=year,
                                                     month=month,
@@ -11,8 +11,9 @@ def translate_day_start_and_end_from_est_to_utc(year, month, day):
                                                     minute=0,
                                                     second=0,
                                                     microsecond=0))
-    day_end_est = day_start_est + datetime.timedelta(hours=24)
-    return {
-        'day_start_utc': day_start_est.astimezone(pytz.utc),
-        'day_end_utc': day_end_est.astimezone(pytz.utc)
-    }
+    return day_start_est.astimezone(pytz.utc)
+
+
+def translate_day_end_from_est_to_utc(year, month, day):
+    day_start_utc = translate_day_start_from_est_to_utc(year=year, month=month, day=day)
+    return day_start_utc + datetime.timedelta(hours=24)
