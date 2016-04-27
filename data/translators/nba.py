@@ -1,11 +1,13 @@
+import datetime
+
 from basketball_reference_web_scraper.readers import return_all_player_season_statistics, return_box_scores_for_date, return_schedule
-from data.models import Position, Team, Season, Game, Player, BoxScore, DailyFantasySportsSite, PlayerSalary
+from django.db.models import Q
+
+import data.calculators.nba as nba_calculators
 import data.translators.util as util_translators
 import data.validators.nba as nba_validators
 import data.validators.util as util_validators
-import data.calculators.nba as nba_calculators
-from django.db.models import Q
-import datetime
+from data.models import Position, Team, Season, Game, Player
 
 
 def translate_position(position):
