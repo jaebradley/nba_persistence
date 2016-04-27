@@ -15,39 +15,31 @@ DRAFTKINGS_SCORING_VALUES = {
 
 
 def calculate_draftkings_points(box_score):
-    if not nba_validators.is_valid_box_score(box_score):
-        raise ValueError('illegal boxscore')
-    else:
-        score = 0
-        if nba_validators.is_double_double(box_score=box_score):
-            score += DRAFTKINGS_SCORING_VALUES['DOUBLE_DOUBLE']
-        elif nba_validators.is_triple_double(box_score=box_score):
-            score += DRAFTKINGS_SCORING_VALUES['TRIPLE_DOUBLE']
+    score = 0
+    if nba_validators.is_double_double(box_score=box_score):
+        score += DRAFTKINGS_SCORING_VALUES['DOUBLE_DOUBLE']
+    elif nba_validators.is_triple_double(box_score=box_score):
+        score += DRAFTKINGS_SCORING_VALUES['TRIPLE_DOUBLE']
 
-        for key, value in box_score.iteritems():
-            multiplier = None
-            if key is nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['POINTS']:
-                multiplier = DRAFTKINGS_SCORING_VALUES['POINT']
+    if hasattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['POINTS']):
+        score += DRAFTKINGS_SCORING_VALUES['POINT'] * float(getattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['POINTS']))
 
-            elif key is nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['THREE_POINT_FIELD_GOALS']:
-                multiplier = DRAFTKINGS_SCORING_VALUES['MADE_THREE_POINT_SHOT']
+    elif hasattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['THREE_POINT_FIELD_GOALS']):
+        score += DRAFTKINGS_SCORING_VALUES['MADE_THREE_POINT_SHOT'] * float(getattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['THREE_POINT_FIELD_GOALS']))
 
-            elif key is nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['TOTAL_REBOUNDS']:
-                multiplier = DRAFTKINGS_SCORING_VALUES['REBOUND']
+    elif hasattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['TOTAL_REBOUNDS']):
+        score += DRAFTKINGS_SCORING_VALUES['REBOUND'] * float(getattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['TOTAL_REBOUNDS']))
 
-            elif key is nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['ASSISTS']:
-                multiplier = DRAFTKINGS_SCORING_VALUES['ASSIST']
+    elif hasattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['ASSISTS']):
+        score += DRAFTKINGS_SCORING_VALUES['ASSIST'] * float(getattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['ASSISTS']))
 
-            elif key is nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['STEALS']:
-                multiplier = DRAFTKINGS_SCORING_VALUES['STEAL']
+    elif hasattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['STEALS']):
+        score += DRAFTKINGS_SCORING_VALUES['STEAL'] * float(getattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['STEALS']))
 
-            elif key is nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['BLOCKS']:
-                multiplier = DRAFTKINGS_SCORING_VALUES['BLOCK']
+    elif hasattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['BLOCKS']):
+        score += DRAFTKINGS_SCORING_VALUES['BLOCK'] * float(getattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['BLOCKS']))
 
-            elif key is nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['TURNOVERS']:
-                multiplier = DRAFTKINGS_SCORING_VALUES['TURNOVER']
+    elif hasattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['TURNOVERS']):
+        score += DRAFTKINGS_SCORING_VALUES['TURNOVER'] * float(getattr(box_score, nba_validators.STATISTICAL_CATEGORIES_USED_FOR_DRAFTKINGS_CALCULATION['TURNOVERS']))
 
-            if multiplier is not None:
-                score *= float(multiplier) * value
-
-        return score
+    return score

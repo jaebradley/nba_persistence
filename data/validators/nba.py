@@ -34,12 +34,9 @@ def is_valid_box_score(box_score):
 
 def count_doubles(box_score):
     double_count = 0
-    if not is_valid_box_score(box_score=box_score):
-        raise ValueError('is not a valid box score')
-    else:
-        for statistic in double_calculation_statistical_categories:
-            if box_score[statistic] > 9:
-                double_count += 1
+    for statistic in double_calculation_statistical_categories:
+        if getattr(box_score, statistic) > 9:
+            double_count += 1
 
     return double_count
 

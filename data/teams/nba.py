@@ -64,6 +64,10 @@ teams = [
         'name': 'Miami Heat'
     },
     {
+        'abbreviation': 'MIL',
+        'name': 'Milwaukee Bucks'
+    },
+    {
         'abbreviation': 'MIN',
         'name': 'Minnesota Timberwolves'
     },

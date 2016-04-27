@@ -32,10 +32,10 @@ def insert_games(games):
         if not util_validators.is_valid_game(game=game):
             raise ValueError('invalid game')
         else:
-            Game.objects.update_or_create(home_team=game.home_team,
-                                          away_team=game.away_team,
-                                          start_time=game.start_time,
-                                          season=game.season)
+            Game.objects.update_or_create(home_team=game['home_team'],
+                                          away_team=game['away_team'],
+                                          start_time=game['start_time'],
+                                          season=game['season'])
 
 
 def insert_players(players):
@@ -43,10 +43,10 @@ def insert_players(players):
         if not util_validators.is_valid_player(player=player):
             raise ValueError('player is missing team, position, first name, or last name')
         else:
-            Player.objects.update_or_create(first_name=player.first_name,
-                                            last_name=player.last_name,
-                                            team=player.team,
-                                            position=player.position)
+            Player.objects.update_or_create(first_name=player['first_name'],
+                                            last_name=player['last_name'],
+                                            team=player['team'],
+                                            position=player['position'])
 
 
 def insert_daily_fantasy_sports_sites():

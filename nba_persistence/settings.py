@@ -27,7 +27,7 @@ SECRET_KEY = '6hl9l(@et#*n3742w6mxg65*yj$uu*u$q!=4^la^wi%6z+keg5'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-DATABASES = { 'default' : dj_database_url.config(default="postgres://sylwonkbvfcryf:z80wojMk44J2hdYitdfVml9Xz9@ec2-54-204-8-138.compute-1.amazonaws.com:5432/d91nl9f2ghul9b")}
+DATABASES = { 'default' : dj_database_url.config(default="postgres://jaebradley@localhost:5432/statistics")}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

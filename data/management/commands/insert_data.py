@@ -21,12 +21,12 @@ class Command(BaseCommand):
         self.insert_nba_data()
 
     def insert_nba_data(self):
-        insert_positions(positions=nba_positions)
-        insert_teams(teams=nba_teams)
-        players = translate_players(season_start_year=self.season_start_year)
-        insert_players(players=players)
-        games = translate_seasons_to_games(self.season_start_year, self.season_start_year)
-        insert_games(games=games)
+        # insert_positions(positions=nba_positions)
+        # insert_teams(teams=nba_teams)
+        # players = translate_players(season_start_year=self.season_start_year)
+        # insert_players(players=players)
+        # games = translate_seasons_to_games(self.season_start_year, self.season_start_year)
+        # insert_games(games=games)
         nba_inserters.insert_box_scores(self.season_start_date, datetime.now(utc))
 
 
