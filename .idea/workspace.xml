@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/calculators/nba.py" afterPath="$PROJECT_DIR$/data/calculators/nba.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/nba/inserters.py" afterPath="$PROJECT_DIR$/data/inserters/nba/inserters.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/translators/nba.py" afterPath="$PROJECT_DIR$/data/translators/nba.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/translators/util.py" afterPath="$PROJECT_DIR$/data/translators/util.py" />
     </list>
     <ignored path="nba_persistence.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,10 +66,10 @@
           <file leaf-file-name="inserters.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/data/inserters/nba/inserters.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.6181818">
-                  <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.54545456">
+                  <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
                   <folding>
-                    <element signature="e#0#108#0" expanded="true" />
+                    <element signature="e#0#46#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -130,8 +127,8 @@
         <option value="$PROJECT_DIR$/data/validators/nba.py" />
         <option value="$PROJECT_DIR$/data/translators/util.py" />
         <option value="$PROJECT_DIR$/data/translators/nba.py" />
-        <option value="$PROJECT_DIR$/data/inserters/nba/inserters.py" />
         <option value="$PROJECT_DIR$/data/calculators/nba.py" />
+        <option value="$PROJECT_DIR$/data/inserters/nba/inserters.py" />
       </list>
     </option>
   </component>
@@ -1034,10 +1031,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/nba/inserters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6181818">
-          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.54545456">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
           <folding>
-            <element signature="e#0#108#0" expanded="true" />
+            <element signature="e#0#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
