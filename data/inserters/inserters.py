@@ -38,20 +38,22 @@ def insert_schedules(first_season_start_year, last_season_start_year):
             Game.objects.update_or_create(home_team=home_team, away_team=away_team, start_time=event.start_time, season=season)
 
 
-def insert_players(season_start_year):
-    player_season_statistics = return_all_player_season_statistics(season_start_year=season_start_year)
-    for player_season in player_season_statistics:
-        team = Team.objects.get(abbreviation=player_season.team)
-        if player_season.position == 'G':
-            player_position = 'PG'
-        elif player_season.position == 'F':
-            player_position = 'SF'
-        elif '-' in player_season.position:
-            player_position = 'PG'
+def is_valid_player(player):
+    return 'team' in player and \
+            'position' in player and \
+            'first_name' in player and \
+            'last_name' in player
+
+
+def insert_players(players):
+    for player in players:
+        if not is_valid_player(player):
+            raise ValueError('player is missing team, position, first name, or last name')
         else:
-            player_position = player_season.position
-        position = Position.objects.get(abbreviation=player_position)
-        Player.objects.update_or_create(first_name=player_season.first_name, last_name=player_season.last_name, team=team, position=position)
+            Player.objects.update_or_create(first_name=player.first_name,
+                                            last_name=player.last_name,
+                                            team=player.team,
+                                            position=player.position)
 
 
 def insert_box_score(box_score):
