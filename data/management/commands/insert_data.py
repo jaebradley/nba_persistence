@@ -3,11 +3,11 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from pytz import utc
 
-from data.inserters.inserters import insert_positions, insert_teams, insert_players, insert_games
-from data.teams.nba import teams as nba_teams
-from data.positions.nba import positions as nba_positions
-from data.translators.nba import translate_players, translate_seasons_to_games
 import data.inserters.nba.inserters as nba_inserters
+from data.inserters.inserters import insert_positions, insert_teams, insert_players, insert_games
+from data.positions.nba import positions as nba_positions
+from data.teams.nba import teams as nba_teams
+from data.translators.nba import translate_players, translate_seasons_to_games
 
 
 class Command(BaseCommand):

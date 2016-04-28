@@ -1,5 +1,4 @@
 import data.translators.nba as nba_translators
-import data.validators.nba as nba_validators
 from data.models import BoxScore
 
 
