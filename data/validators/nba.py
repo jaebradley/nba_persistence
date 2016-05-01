@@ -1,3 +1,5 @@
+from data.models import BoxScore
+
 double_calculation_statistical_categories = ['total_rebounds', 'assists', 'steals', 'blocks', 'points']
 statistical_categories_not_used_for_calculation = {
     'SECONDS_PLAYED': 'seconds_played',
