@@ -3,13 +3,30 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from pytz import utc
 
-from data.inserters.inserters import insert_positions, insert_teams, insert_schedules, insert_players, insert_box_scores
+import data.inserters.nba.inserters as nba_inserters
+from data.inserters.inserters import insert_positions, insert_teams, insert_players, insert_games
+from data.positions.nba import positions as nba_positions
+from data.teams.nba import teams as nba_teams
+from data.translators.nba import translate_players, translate_seasons_to_games
 
 
 class Command(BaseCommand):
+
+    def __init__(self, stdout=None, stderr=None, no_color=False):
+        super(Command, self).__init__(stdout, stderr, no_color)
+        self.season_start_year = 2015
+        self.season_start_date = datetime(year=2015, month=10, day=1, tzinfo=utc)
+
     def handle(self, *args, **options):
-        insert_positions()
-        insert_teams('data/inserters/static/nba_team_name_mapping.csv')
-        insert_schedules(2015, 2015)
-        insert_players(2015)
-        insert_box_scores(datetime(year=2015, month=10, day=1, tzinfo=utc), datetime.now(utc))
+        self.insert_nba_data()
+
+    def insert_nba_data(self):
+        insert_positions(positions=nba_positions)
+        insert_teams(teams=nba_teams)
+        players = translate_players(season_start_year=self.season_start_year)
+        insert_players(players=players)
+        games = translate_seasons_to_games(self.season_start_year, self.season_start_year)
+        insert_games(games=games)
+        nba_inserters.insert_box_scores(self.season_start_date, datetime.now(utc))
+
+
