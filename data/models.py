@@ -48,16 +48,16 @@ class Game(Model):
 
 class Player(Model):
 
-    first_name = CharField(max_length=250)
-    last_name = CharField(max_length=250)
-    team = ForeignKey(Team, on_delete=CASCADE)
+    name = CharField(max_length=250)
     position = ForeignKey(Position, on_delete=CASCADE)
+    team = ForeignKey(Team, on_delete=CASCADE)
+    season = ForeignKey(Season, on_delete=CASCADE)
 
     class Meta:
-        unique_together = ('first_name', 'last_name', 'team', 'position')
+        unique_together = ('name', 'position', 'team', 'season')
 
     def __unicode__(self):
-        return '{0} {1} - {2} - {3}'.format(self.first_name, self.last_name, self.position, self.team.abbreviation)
+        return '{0} - {1} - {2} - {3}'.format(self.name, self.position, self.team, self.position)
 
 
 class DailyFantasySportsSite(Model):
@@ -102,10 +102,9 @@ class BoxScore(Model):
     turnovers = IntegerField()
     fouls_committed = IntegerField()
     points = IntegerField()
-    draftkings_points = FloatField()
 
     class Meta:
         unique_together = ('player', 'game')
 
     def __unicode__(self):
-        return '{0} - {1} - {2}'.format(self.player, self.game, self.draftkings_points)
+        return '{0} - {1} - {2}'.format(self.player, self.game)
