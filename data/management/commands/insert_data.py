@@ -3,10 +3,8 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from pytz import utc
 
-import data.inserters.nba.inserters as nba_inserters
-from data.inserters.inserters import insert_positions, insert_teams, insert_players, insert_games
-from data.positions.nba import positions as nba_positions
-from data.teams.nba import teams as nba_teams
+import data.translators.inserters as nba_inserters
+from data.inserters import insert_positions, insert_teams, insert_players, insert_games
 from data.translators.nba import translate_players, translate_seasons_to_games
 
 
@@ -21,8 +19,8 @@ class Command(BaseCommand):
         self.insert_nba_data()
 
     def insert_nba_data(self):
-        insert_positions(positions=nba_positions)
-        insert_teams(teams=nba_teams)
+        insert_positions()
+        insert_teams()
         players = translate_players(season_start_year=self.season_start_year)
         insert_players(players=players)
         games = translate_seasons_to_games(self.season_start_year, self.season_start_year)

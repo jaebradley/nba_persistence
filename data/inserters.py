@@ -8,9 +8,9 @@ from pytz import timezone, utc
 import data.validators.util as util_validators
 from data.dfs_sites.sites import sites as dfs_sites
 from data.models import Position, Team, Game, Player, DailyFantasySportsSite, PlayerSalary
-from data.inserters.utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
 from data.positions import Position as PositionEnum
 from data.teams import Team as TeamEnum
+from data.translators.utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
 
 
 def insert_positions():
@@ -18,7 +18,7 @@ def insert_positions():
         Position.update_or_create(name=position.name)
 
 
-def insert_teams(teams):
+def insert_teams():
     for team in TeamEnum.members:
         Team.update_or_create(name=team.name)
 
@@ -39,8 +39,7 @@ def insert_players(players):
         if not util_validators.is_valid_player(player=player):
             raise ValueError('player is missing team, position, first name, or last name')
         else:
-            Player.objects.update_or_create(first_name=player['first_name'],
-                                            last_name=player['last_name'],
+            Player.objects.update_or_create(name=player['first_name'] + player['last_name'],
                                             team=player['team'],
                                             position=player['position'])
 
