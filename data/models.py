@@ -1,30 +1,22 @@
 from __future__ import unicode_literals
 
-from django.db.models import Model, IntegerField, CharField, DateTimeField, FloatField, ForeignKey, CASCADE
+from django.db.models import Model, IntegerField, CharField, DateTimeField, ForeignKey, CASCADE
 
 
 class Position(Model):
 
-    name = CharField(max_length=50)
-    abbreviation = CharField(max_length=10)
-
-    class Meta:
-        unique_together = ('name', 'abbreviation')
+    name = CharField(max_length=50, unique=True)
 
     def __unicode__(self):
-        return '{0} - {1}'.format(self.name, self.abbreviation)
+        return '{0}'.format(self.name)
 
 
 class Team(Model):
 
-    name = CharField(max_length=200)
-    abbreviation = CharField(max_length=100)
-
-    class Meta:
-        unique_together = ('name', 'abbreviation')
+    name = CharField(max_length=200, unique=True)
 
     def __unicode__(self):
-        return '{0} - {1}'.format(self.name, self.abbreviation)
+        return '{0}'.format(self.name)
 
 
 class Season(Model):
@@ -40,10 +32,10 @@ class Game(Model):
     season = ForeignKey(Season, on_delete=CASCADE)
 
     class Meta:
-        unique_together = ('home_team', 'away_team', 'start_time')
+        unique_together = ('home_team', 'away_team', 'start_time', 'season')
 
     def __unicode__(self):
-        return '{0} - {1} - {2}'.format(self.home_team.abbreviation, self.away_team.abbreviation, self.start_time)
+        return '{0} - {1} - {2} - {3}'.format(self.home_team.abbreviation, self.away_team.abbreviation, self.start_time, self.season)
 
 
 class Player(Model):
@@ -52,12 +44,13 @@ class Player(Model):
     position = ForeignKey(Position, on_delete=CASCADE)
     team = ForeignKey(Team, on_delete=CASCADE)
     season = ForeignKey(Season, on_delete=CASCADE)
+    number = IntegerField
 
     class Meta:
-        unique_together = ('name', 'position', 'team', 'season')
+        unique_together = ('name', 'position', 'team', 'season', 'number')
 
     def __unicode__(self):
-        return '{0} - {1} - {2} - {3}'.format(self.name, self.position, self.team, self.position)
+        return '{0} - {1} - {2} - {3} - {4}'.format(self.name, self.position, self.team, self.season, self.number)
 
 
 class DailyFantasySportsSite(Model):
@@ -107,4 +100,4 @@ class BoxScore(Model):
         unique_together = ('player', 'game')
 
     def __unicode__(self):
-        return '{0} - {1} - {2}'.format(self.player, self.game)
+        return '{0} - {1}'.format(self.player, self.game)
