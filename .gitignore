@@ -1,2 +1,5 @@
 *.pyc
 .idea/
+.idea/misc.xml
+.idea/nba_persistence.iml
+.idea/workspace.xml
