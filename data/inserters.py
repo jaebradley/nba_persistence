@@ -8,23 +8,19 @@ from pytz import timezone, utc
 import data.validators.util as util_validators
 from data.dfs_sites.sites import sites as dfs_sites
 from data.models import Position, Team, Game, Player, DailyFantasySportsSite, PlayerSalary
-from utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
+from data.inserters.utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
+from data.positions import Position as PositionEnum
+from data.teams import Team as TeamEnum
 
 
-def insert_positions(positions):
-    for position in positions:
-        if 'name' in position or 'abbreviation' in position:
-            Position.objects.update_or_create(name=position['name'], abbreviation=position['abbreviation'])
-        else:
-            raise ValueError('position must have both name and abbreviation')
+def insert_positions():
+    for position in PositionEnum.members:
+        Position.update_or_create(name=position.name)
 
 
 def insert_teams(teams):
-    for team in teams:
-        if 'name' in team or 'abbreviation' in team:
-            Team.objects.update_or_create(name=team['name'], abbreviation=team['abbreviation'])
-        else:
-            raise ValueError('team must have both name and abbreviation')
+    for team in TeamEnum.members:
+        Team.update_or_create(name=team.name)
 
 
 def insert_games(games):

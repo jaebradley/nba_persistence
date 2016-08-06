@@ -44,13 +44,12 @@ class Player(Model):
     position = ForeignKey(Position, on_delete=CASCADE)
     team = ForeignKey(Team, on_delete=CASCADE)
     season = ForeignKey(Season, on_delete=CASCADE)
-    number = IntegerField
 
     class Meta:
-        unique_together = ('name', 'position', 'team', 'season', 'number')
+        unique_together = ('name', 'position', 'team', 'season')
 
     def __unicode__(self):
-        return '{0} - {1} - {2} - {3} - {4}'.format(self.name, self.position, self.team, self.season, self.number)
+        return '{0} - {1} - {2} - {3} - {4}'.format(self.name, self.position, self.team, self.season)
 
 
 class DailyFantasySportsSite(Model):
