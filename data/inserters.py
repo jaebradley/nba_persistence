@@ -2,25 +2,12 @@ import csv
 import os
 from datetime import datetime, timedelta
 
+import data.validators.util as util_validators
 from django.core.exceptions import ObjectDoesNotExist
 from pytz import timezone, utc
 
-import data.validators.util as util_validators
-from data.dfs_sites.sites import sites as dfs_sites
-from data.models import Position, Team, Game, Player, DailyFantasySportsSite, PlayerSalary
-from data.positions import Position as PositionEnum
-from data.teams import Team as TeamEnum
+from data.models import Game, Player, DailyFantasySportsSite, PlayerSalary
 from data.translators.utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
-
-
-def insert_positions():
-    for position in PositionEnum.members:
-        Position.update_or_create(name=position.name)
-
-
-def insert_teams():
-    for team in TeamEnum.members:
-        Team.update_or_create(name=team.name)
 
 
 def insert_games(games):
@@ -42,11 +29,6 @@ def insert_players(players):
             Player.objects.update_or_create(name=player['first_name'] + player['last_name'],
                                             team=player['team'],
                                             position=player['position'])
-
-
-def insert_daily_fantasy_sports_sites():
-    for site in dfs_sites:
-        DailyFantasySportsSite.objects.update_or_create(name=site['name'])
 
 
 def insert_draftkings_salaries(day):

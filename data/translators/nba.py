@@ -1,10 +1,18 @@
-import pytz
-from basketball_reference_web_scraper.readers import return_all_player_season_statistics, return_box_scores_for_date, return_schedule
-from django.db.models import Q
+# import pytz
+# from basketball_reference_web_scraper.readers import return_all_player_season_statistics, return_box_scores_for_date, return_schedule
+# from django.db.models import Q
+#
+# import data.calculators.nba as nba_calculators
+# import data.translators.util as util_translators
+# from data.models import Position, Team, Season, Game, Player
 
-import data.calculators.nba as nba_calculators
-import data.translators.util as util_translators
-from data.models import Position, Team, Season, Game, Player
+from nba_data.client import Client
+from nba_data.data.season import Season
+
+def test():
+    print Client.get_players_for_season(season=Season.season_2015)
+
+test()
 
 
 def translate_position(position):

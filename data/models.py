@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.db.models import Model, IntegerField, CharField, DateTimeField, ForeignKey, CASCADE
+from django.db.models import Model, IntegerField, CharField, DateField, ForeignKey, CASCADE
 
 
 class Position(Model):
@@ -21,21 +21,24 @@ class Team(Model):
 
 class Season(Model):
 
-    start_year = IntegerField(unique=True)
+    name = CharField(max_length=50, unique=True)
+
+    def __unicode__(self):
+        return '{0}'.format(self.name)
 
 
 class Game(Model):
 
     home_team = ForeignKey(Team, on_delete=CASCADE, related_name='home_team')
     away_team = ForeignKey(Team, on_delete=CASCADE, related_name='away_team')
-    start_time = DateTimeField()
+    start_date = DateField()
     season = ForeignKey(Season, on_delete=CASCADE)
 
     class Meta:
-        unique_together = ('home_team', 'away_team', 'start_time', 'season')
+        unique_together = ('home_team', 'away_team', 'start_date', 'season')
 
     def __unicode__(self):
-        return '{0} - {1} - {2} - {3}'.format(self.home_team.abbreviation, self.away_team.abbreviation, self.start_time, self.season)
+        return '{0} - {1} - {2} - {3}'.format(self.home_team.name, self.away_team.name, self.start_date, self.season)
 
 
 class Player(Model):
