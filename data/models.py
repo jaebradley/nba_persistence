@@ -1,63 +1,58 @@
 from __future__ import unicode_literals
 
-from django.db.models import Model, IntegerField, CharField, DateTimeField, FloatField, ForeignKey, CASCADE
+from django.db.models import Model, IntegerField, CharField, DateField, ForeignKey, CASCADE
 
 
 class Position(Model):
 
-    name = CharField(max_length=50)
-    abbreviation = CharField(max_length=10)
-
-    class Meta:
-        unique_together = ('name', 'abbreviation')
+    name = CharField(max_length=50, unique=True)
 
     def __unicode__(self):
-        return '{0} - {1}'.format(self.name, self.abbreviation)
+        return '{0}'.format(self.name)
 
 
 class Team(Model):
 
-    name = CharField(max_length=200)
-    abbreviation = CharField(max_length=100)
-
-    class Meta:
-        unique_together = ('name', 'abbreviation')
+    name = CharField(max_length=200, unique=True)
 
     def __unicode__(self):
-        return '{0} - {1}'.format(self.name, self.abbreviation)
+        return '{0}'.format(self.name)
 
 
 class Season(Model):
 
-    start_year = IntegerField(unique=True)
+    name = CharField(max_length=50, unique=True)
+
+    def __unicode__(self):
+        return '{0}'.format(self.name)
 
 
 class Game(Model):
 
     home_team = ForeignKey(Team, on_delete=CASCADE, related_name='home_team')
     away_team = ForeignKey(Team, on_delete=CASCADE, related_name='away_team')
-    start_time = DateTimeField()
+    start_date = DateField()
     season = ForeignKey(Season, on_delete=CASCADE)
 
     class Meta:
-        unique_together = ('home_team', 'away_team', 'start_time')
+        unique_together = ('home_team', 'away_team', 'start_date', 'season')
 
     def __unicode__(self):
-        return '{0} - {1} - {2}'.format(self.home_team.abbreviation, self.away_team.abbreviation, self.start_time)
+        return '{0} - {1} - {2} - {3}'.format(self.home_team.name, self.away_team.name, self.start_date, self.season)
 
 
 class Player(Model):
 
-    first_name = CharField(max_length=250)
-    last_name = CharField(max_length=250)
-    team = ForeignKey(Team, on_delete=CASCADE)
+    name = CharField(max_length=250)
     position = ForeignKey(Position, on_delete=CASCADE)
+    team = ForeignKey(Team, on_delete=CASCADE)
+    season = ForeignKey(Season, on_delete=CASCADE)
 
     class Meta:
-        unique_together = ('first_name', 'last_name', 'team', 'position')
+        unique_together = ('name', 'position', 'team', 'season')
 
     def __unicode__(self):
-        return '{0} {1} - {2} - {3}'.format(self.first_name, self.last_name, self.position, self.team.abbreviation)
+        return '{0} - {1} - {2} - {3} - {4}'.format(self.name, self.position, self.team, self.season)
 
 
 class DailyFantasySportsSite(Model):
@@ -82,7 +77,7 @@ class PlayerSalary(Model):
         return '{0} - {1} - {2} - {3}'.format(self.site, self.game, self.player, self.salary)
 
 
-class BoxScore(Model):
+class TraditionalBoxScore(Model):
 
     player = ForeignKey(Player, on_delete=CASCADE)
     game = ForeignKey(Game, on_delete=CASCADE)
@@ -102,10 +97,9 @@ class BoxScore(Model):
     turnovers = IntegerField()
     fouls_committed = IntegerField()
     points = IntegerField()
-    draftkings_points = FloatField()
 
     class Meta:
         unique_together = ('player', 'game')
 
     def __unicode__(self):
-        return '{0} - {1} - {2}'.format(self.player, self.game, self.draftkings_points)
+        return '{0} - {1}'.format(self.player, self.game)

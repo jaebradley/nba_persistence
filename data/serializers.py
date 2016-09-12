@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 
-from data.models import Team, Position, Season, Game, Player, BoxScore, PlayerSalary, DailyFantasySportsSite
+from data.models import Team, Position, Season, Game, Player, TraditionalBoxScore, PlayerSalary, DailyFantasySportsSite
 
 
 class PositionSerializer(ModelSerializer):
@@ -45,7 +45,7 @@ class BoxScoreSerializer(ModelSerializer):
     game = GameSerializer()
 
     class Meta:
-        model = BoxScore
+        model = TraditionalBoxScore
         fields = ('player', 'game', 'seconds_played', 'field_goals', 'field_goal_attempts', 'three_point_field_goals',
                   'three_point_field_goal_attempts', 'free_throws', 'free_throw_attempts', 'offensive_rebounds',
                   'defensive_rebounds', 'total_rebounds', 'assists', 'steals', 'blocks', 'turnovers', 'fouls_committed',

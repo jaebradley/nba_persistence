@@ -3,7 +3,7 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from pytz import timezone
 
-from data.inserters.inserters import insert_daily_fantasy_sports_sites, insert_dfs_salaries
+from data.inserters import insert_daily_fantasy_sports_sites, insert_dfs_salaries
 
 
 class Command(BaseCommand):

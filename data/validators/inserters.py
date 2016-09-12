@@ -2,29 +2,12 @@ import csv
 import os
 from datetime import datetime, timedelta
 
+import data.validators.util as util_validators
 from django.core.exceptions import ObjectDoesNotExist
 from pytz import timezone, utc
 
-import data.validators.util as util_validators
-from data.dfs_sites.sites import sites as dfs_sites
-from data.models import Position, Team, Game, Player, DailyFantasySportsSite, PlayerSalary
-from utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
-
-
-def insert_positions(positions):
-    for position in positions:
-        if 'name' in position or 'abbreviation' in position:
-            Position.objects.update_or_create(name=position['name'], abbreviation=position['abbreviation'])
-        else:
-            raise ValueError('position must have both name and abbreviation')
-
-
-def insert_teams(teams):
-    for team in teams:
-        if 'name' in team or 'abbreviation' in team:
-            Team.objects.update_or_create(name=team['name'], abbreviation=team['abbreviation'])
-        else:
-            raise ValueError('team must have both name and abbreviation')
+from data.models import Game, Player, DailyFantasySportsSite, PlayerSalary
+from data.translators.utils import draftkings_salary_team_abbreviation_converter, fanduel_salary_team_abbreviation_converter, draftkings_player_name_converter, fanduel_player_name_converter
 
 
 def insert_games(games):
@@ -43,15 +26,9 @@ def insert_players(players):
         if not util_validators.is_valid_player(player=player):
             raise ValueError('player is missing team, position, first name, or last name')
         else:
-            Player.objects.update_or_create(first_name=player['first_name'],
-                                            last_name=player['last_name'],
+            Player.objects.update_or_create(name=player['first_name'] + player['last_name'],
                                             team=player['team'],
                                             position=player['position'])
-
-
-def insert_daily_fantasy_sports_sites():
-    for site in dfs_sites:
-        DailyFantasySportsSite.objects.update_or_create(name=site['name'])
 
 
 def insert_draftkings_salaries(day):

@@ -1,9 +1,9 @@
 import data.translators.nba as nba_translators
-from data.models import BoxScore
+from data.models import TraditionalBoxScore
 
 
 def insert_box_score(box_score):
-    BoxScore.objects.update_or_create(
+    TraditionalBoxScore.objects.update_or_create(
             player=box_score.player,
             game=box_score.game,
             seconds_played=box_score.seconds_played,
