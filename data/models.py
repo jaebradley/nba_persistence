@@ -77,7 +77,7 @@ class PlayerSalary(Model):
         return '{0} - {1} - {2} - {3}'.format(self.site, self.game, self.player, self.salary)
 
 
-class BoxScore(Model):
+class TraditionalBoxScore(Model):
 
     player = ForeignKey(Player, on_delete=CASCADE)
     game = ForeignKey(Game, on_delete=CASCADE)
