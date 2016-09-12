@@ -1,6 +1,5 @@
 from nba_data.client import Client
-from data.models import Player
-from data.objects.position import Position
+from data.models import Player, Team, Position, Season
 
 
 class PlayerInserter:
@@ -11,9 +10,16 @@ class PlayerInserter:
     @staticmethod
     def insert_players_for_season(season):
         for player in Client.get_players_for_season(season=season):
-            position = Position.from_name(name=player.position.value)
-            Player.get_or_create(name=player.name,
-                                 position=position.value,
-                                 team=player.team.value,
-                                 season=player.season.value)
+            player_details = Client.get_player_info(player_id=player.nba_id)
+
+            position_name = ""
+            if player_details.position is not None:
+                position_name = player_details.position.value.lower()
+
+            team = Team.objects.get(name=player.team.value)
+            Player.objects.get_or_create(name=player.name,
+                                         position=Position.objects.get(name=position_name),
+                                         team=team,
+                                         season=Season.objects.get(name=season.value),
+                                         jersey_number=player_details.jersey_number)
 
