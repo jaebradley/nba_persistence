@@ -9,5 +9,5 @@ class SeasonInserter:
 
     @staticmethod
     def insert_seasons():
-        for season in SeasonEnum.members:
-            SeasonModel.update_or_create(name=season.name)
+        for season_name in [season.name for season in SeasonEnum]:
+            SeasonModel.objects.update_or_create(name=season_name)

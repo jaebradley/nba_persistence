@@ -9,5 +9,5 @@ class PositionInserter:
 
     @staticmethod
     def insert_positions():
-        for position in PositionEnum.members:
-            PositionModel.update_or_create(name=position.name)
+        for position_name in [position.value for position in PositionEnum]:
+            PositionModel.objects.update_or_create(name=position_name)

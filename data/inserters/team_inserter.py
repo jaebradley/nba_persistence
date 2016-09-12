@@ -9,5 +9,5 @@ class TeamInserter:
 
     @staticmethod
     def insert_teams():
-        for team in TeamEnum.members:
-            TeamModel.update_or_create(name=team.name)
+        for team_name in [team_name.name for team_name in TeamEnum]:
+            TeamModel.objects.update_or_create(name=team_name)
