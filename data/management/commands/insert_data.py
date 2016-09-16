@@ -4,6 +4,7 @@ from data.inserters.position_inserter import PositionInserter
 from data.inserters.season_inserter import SeasonInserter
 from data.inserters.team_inserter import TeamInserter
 from data.inserters.player_inserter import PlayerInserter
+from data.inserters.game_inserter import GameInserter
 from data.objects.season import Season
 
 
@@ -24,7 +25,7 @@ class Command(BaseCommand):
 
     @staticmethod
     def insert_dynamic_data():
-        PlayerInserter.insert_players_for_season(season=Season.season_2015)
-
+        # PlayerInserter.insert_players_for_season(season=Season.season_2015)
+        GameInserter.insert_games_for_season(season=Season.season_2015)
 
 
