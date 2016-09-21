@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/game_inserter.py" afterPath="$PROJECT_DIR$/data/inserters/game_inserter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/player_inserter.py" afterPath="$PROJECT_DIR$/data/inserters/player_inserter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/management/commands/insert_data.py" afterPath="$PROJECT_DIR$/data/management/commands/insert_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/models.py" afterPath="$PROJECT_DIR$/data/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/requirements.txt" afterPath="$PROJECT_DIR$/requirements.txt" />
     </list>
     <ignored path="nba_persistence.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,8 +88,8 @@
           <file leaf-file-name="game_inserter.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/data/inserters/game_inserter.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4">
-                  <caret line="22" column="63" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+                <state vertical-scroll-proportion="0.3090909">
+                  <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
                   <folding>
                     <element signature="e#0#34#0" expanded="true" />
                   </folding>
@@ -1105,8 +1101,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/game_inserter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4">
-          <caret line="22" column="63" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
+        <state vertical-scroll-proportion="0.3090909">
+          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
