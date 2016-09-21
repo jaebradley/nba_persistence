@@ -14,7 +14,7 @@ logging==0.4.9.6
 lxml==3.4.2
 MarkupSafe==0.23
 mimerender==0.5.5
-nba-data==0.6
+nba-data==0.8
 psycopg2==2.6.2
 python-dateutil==2.4.2
 python-mimeparse==0.1.4

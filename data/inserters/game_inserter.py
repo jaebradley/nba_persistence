@@ -11,7 +11,11 @@ class GameInserter:
     @staticmethod
     def insert_games_for_season(season):
         for team in TeamEnum:
-            GameInserter.insert_games_for_team(season=season, team=team)
+            team_obj = Team.objects.get(name=team.value)
+            home_game_counts = Game.objects.filter(home_team=team_obj, season=Season.objects.get(name=season.value)).count()
+            away_game_counts = Game.objects.filter(away_team=team_obj, season=Season.objects.get(name=season.value)).count()
+            if home_game_counts < 41 or away_game_counts < 41 or home_game_counts + away_game_counts < 82:
+                GameInserter.insert_games_for_team(season=season, team=team)
 
     @staticmethod
     def insert_games_for_team(season, team):
