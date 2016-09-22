@@ -45,7 +45,7 @@ class Player(Model):
 
     name = CharField(max_length=250)
     position = ForeignKey(Position, on_delete=CASCADE)
-    team = ForeignKey(Team, on_delete=CASCADE)
+    team = ForeignKey(Team, on_delete=CASCADE, null=True)
     season = ForeignKey(Season, on_delete=CASCADE)
     jersey_number = IntegerField(null=True)
 
