@@ -28,5 +28,6 @@ class GameInserter:
                 home_team=home_team,
                 away_team=away_team,
                 start_date=game.date,
-                season=Season.objects.get(name=season.value))
+                season=Season.objects.get(name=season.value),
+                nba_id=game.nba_id)
 

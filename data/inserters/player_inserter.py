@@ -26,5 +26,6 @@ class PlayerInserter:
                                              position=Position.objects.get(name=position_name),
                                              team=team,
                                              season=Season.objects.get(name=season.value),
-                                             jersey_number=player_details.jersey_number)
+                                             jersey_number=player_details.jersey_number,
+                                             nba_id=player.id)
 

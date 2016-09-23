@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-from django.db.models import Model, IntegerField, CharField, DateField, ForeignKey, CASCADE
+from django.db.models import Model, IntegerField, CharField, DateField, ForeignKey, BigIntegerField, CASCADE
 
 
 class Position(Model):
@@ -33,6 +33,7 @@ class Game(Model):
     away_team = ForeignKey(Team, on_delete=CASCADE, related_name='away_team')
     start_date = DateField()
     season = ForeignKey(Season, on_delete=CASCADE)
+    nba_id = CharField(max_length=100, unique=True)
 
     class Meta:
         unique_together = ('home_team', 'away_team', 'start_date', 'season')
@@ -48,9 +49,10 @@ class Player(Model):
     team = ForeignKey(Team, on_delete=CASCADE, null=True)
     season = ForeignKey(Season, on_delete=CASCADE)
     jersey_number = IntegerField(null=True)
+    nba_id = BigIntegerField()
 
     class Meta:
-        unique_together = ('name', 'position', 'team', 'season', 'jersey_number')
+        unique_together = ('name', 'team', 'jersey_number', 'nba_id')
 
     def __unicode__(self):
         return '{0} - {1} - {2} - {3} - {4} - {5}'.format(self.name, self.position, self.team, self.season, self.jersey_number)
@@ -82,22 +84,21 @@ class TraditionalBoxScore(Model):
 
     player = ForeignKey(Player, on_delete=CASCADE)
     game = ForeignKey(Game, on_delete=CASCADE)
-    seconds_played = IntegerField()
-    field_goals = IntegerField()
-    field_goal_attempts = IntegerField()
-    three_point_field_goals = IntegerField()
-    three_point_field_goal_attempts = IntegerField()
-    free_throws = IntegerField()
-    free_throw_attempts = IntegerField()
-    offensive_rebounds = IntegerField()
-    defensive_rebounds = IntegerField()
-    total_rebounds = IntegerField()
-    assists = IntegerField()
-    steals = IntegerField()
-    blocks = IntegerField()
-    turnovers = IntegerField()
-    fouls_committed = IntegerField()
-    points = IntegerField()
+    seconds_played = IntegerField(null=True)
+    field_goals = IntegerField(null=True)
+    field_goal_attempts = IntegerField(null=True)
+    three_point_field_goals = IntegerField(null=True)
+    three_point_field_goal_attempts = IntegerField(null=True)
+    free_throws = IntegerField(null=True)
+    free_throw_attempts = IntegerField(null=True)
+    offensive_rebounds = IntegerField(null=True)
+    defensive_rebounds = IntegerField(null=True)
+    assists = IntegerField(null=True)
+    steals = IntegerField(null=True)
+    blocks = IntegerField(null=True)
+    turnovers = IntegerField(null=True)
+    fouls_committed = IntegerField(null=True)
+    plus_minus = IntegerField(null=True)
 
     class Meta:
         unique_together = ('player', 'game')
