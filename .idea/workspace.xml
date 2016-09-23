@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56bc4893-9c47-4250-baa5-056c60914c35" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/inserters/box_score_inserter.py" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/migrations/0002_auto_20160912_0313.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/migrations/0003_auto_20160921_0030.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/game_inserter.py" afterPath="$PROJECT_DIR$/data/inserters/game_inserter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/inserters/player_inserter.py" afterPath="$PROJECT_DIR$/data/inserters/player_inserter.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/management/commands/insert_data.py" afterPath="$PROJECT_DIR$/data/management/commands/insert_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/models.py" afterPath="$PROJECT_DIR$/data/models.py" />
     </list>
     <ignored path="nba_persistence.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +22,7 @@
     <favorites_list name="nba_persistence" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.32430556">
+    <splitter split-orientation="horizontal" split-proportion="0.5236111">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
@@ -81,49 +73,13 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="insert_data.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="insert_data.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
+                <state vertical-scroll-proportion="0.5272727">
+                  <caret line="29" column="71" selection-start-line="28" selection-start-column="8" selection-end-line="29" selection-end-column="71" />
                   <folding>
                     <element signature="e#0#51#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="game_inserter.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/inserters/game_inserter.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="42" />
-                  <folding>
-                    <element signature="e#0#34#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="player_inserter.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/inserters/player_inserter.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-                  <folding>
-                    <element signature="e#0#34#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="box_score_inserter.py" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/data/inserters/box_score_inserter.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.8909091">
-                  <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
-                  <folding>
-                    <element signature="e#0#34#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -214,9 +170,9 @@
         <option value="$PROJECT_DIR$/data/inserters/player_inserter.py" />
         <option value="$PROJECT_DIR$/data/inserters/game_inserter.py" />
         <option value="$PROJECT_DIR$/data/inserters/BoxScoreInserter.py" />
-        <option value="$PROJECT_DIR$/data/management/commands/insert_data.py" />
         <option value="$PROJECT_DIR$/data/models.py" />
         <option value="$PROJECT_DIR$/data/inserters/box_score_inserter.py" />
+        <option value="$PROJECT_DIR$/data/management/commands/insert_data.py" />
       </list>
     </option>
   </component>
@@ -1061,16 +1017,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.virtualenvs/nba_persistence/lib/python2.7/site-packages/nba_data/data/box_score.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14545454">
@@ -1121,9 +1067,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/inserters/box_score_inserter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8909091">
+          <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/inserters/player_inserter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.18181819">
           <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
@@ -1141,12 +1097,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/inserters/box_score_inserter.py">
+    <entry file="file://$PROJECT_DIR$/data/management/commands/insert_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8909091">
-          <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.5272727">
+          <caret line="29" column="71" selection-start-line="28" selection-start-column="8" selection-end-line="29" selection-end-column="71" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#51#0" expanded="true" />
           </folding>
         </state>
       </provider>
