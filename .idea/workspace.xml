@@ -139,7 +139,7 @@
         <option value="$PROJECT_DIR$/data/inserters/teams/nba.py" />
         <option value="$PROJECT_DIR$/data/dfs_sites/sites.py" />
         <option value="$PROJECT_DIR$/data/filters/nba.py" />
-        <option value="$PROJECT_DIR$/data/translaters/nba.py" />
+        <option value="$PROJECT_DIR$/data/translators/nba.py" />
         <option value="$PROJECT_DIR$/data/calculators.py" />
         <option value="$PROJECT_DIR$/data/translators/util.py" />
         <option value="$PROJECT_DIR$/data/validators/util.py" />
