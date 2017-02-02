@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # NBA Data API
 
 ## Purpose
