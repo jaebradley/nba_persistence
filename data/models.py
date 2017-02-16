@@ -1,107 +1,93 @@
 from __future__ import unicode_literals
 
-from django.db.models import Model, IntegerField, CharField, DateField, ForeignKey, BigIntegerField, CASCADE
+# Create your models here.
+
+
+from django.db.models import Model, BigIntegerField, CharField, DateTimeField, ForeignKey, \
+    CASCADE
 
 
 class Position(Model):
-
-    name = CharField(max_length=50, unique=True)
-
-    def __unicode__(self):
-        return '{0}'.format(self.name)
-
-
-class Team(Model):
-
-    name = CharField(max_length=200, unique=True)
+    name = CharField(max_length=100, unique=True)
 
     def __unicode__(self):
         return '{0}'.format(self.name)
 
 
 class Season(Model):
+    start_time = DateTimeField(unique=True)
+    end_time = DateTimeField(unique=True)
 
-    name = CharField(max_length=50, unique=True)
+    def __unicode__(self):
+        return '{0} - {1}'.format(self.start_time, self.end_time)
+
+
+class Team(Model):
+    name = CharField(max_length=100, unique=True)
 
     def __unicode__(self):
         return '{0}'.format(self.name)
-
-
-class Game(Model):
-
-    home_team = ForeignKey(Team, on_delete=CASCADE, related_name='home_team')
-    away_team = ForeignKey(Team, on_delete=CASCADE, related_name='away_team')
-    start_date = DateField()
-    season = ForeignKey(Season, on_delete=CASCADE)
-    nba_id = CharField(max_length=100, unique=True)
-
-    class Meta:
-        unique_together = ('home_team', 'away_team', 'start_date', 'season')
-
-    def __unicode__(self):
-        return '{0} - {1} - {2} - {3}'.format(self.home_team.name, self.away_team.name, self.start_date, self.season)
 
 
 class Player(Model):
-
     name = CharField(max_length=250)
-    position = ForeignKey(Position, on_delete=CASCADE)
-    team = ForeignKey(Team, on_delete=CASCADE, null=True)
+    source_id = CharField(max_length=250, unique=True)
+
+    class Meta:
+        unique_together = ('name', 'source_id')
+
+    def __unicode__(self):
+        return '{0} - {1}'.format(self.name, self.source_id)
+
+
+class TeamPlayer(Model):
+    team = ForeignKey(Team, on_delete=CASCADE)
+    player = ForeignKey(Player, on_delete=CASCADE)
+
+    class Meta:
+        unique_together = ('team', 'player')
+
+    def __unicode__(self):
+        return '{0} - {1}'.format(self.team, self.player)
+
+
+class Game(Model):
+    home_team = ForeignKey(Team, on_delete=CASCADE, related_name='home_team')
+    away_team = ForeignKey(Team, on_delete=CASCADE, related_name='away_team')
     season = ForeignKey(Season, on_delete=CASCADE)
-    jersey_number = IntegerField(null=True)
-    nba_id = BigIntegerField()
+    start_time = DateTimeField()
+    source_id = CharField(max_length=250, unique=True)
 
     class Meta:
-        unique_together = ('name', 'team', 'jersey_number', 'nba_id')
+        unique_together = ('home_team', 'away_team', 'season', 'start_time')
 
     def __unicode__(self):
-        return '{0} - {1} - {2} - {3} - {4} - {5}'.format(self.name, self.position, self.team, self.season, self.jersey_number)
+        return '{0} - {1} - {2} - {3} - {4}'.format(self.home_team, self.away_team, self.season, self.start_time, self.source_id)
 
 
-class DailyFantasySportsSite(Model):
-
-    name = CharField(max_length=50, unique=True)
-
-    def __unicode__(self):
-        return '{0}'.format(self.name)
-
-
-class PlayerSalary(Model):
-
-    site = ForeignKey(DailyFantasySportsSite, on_delete=CASCADE)
+class GamePlayerBoxScore(Model):
     game = ForeignKey(Game, on_delete=CASCADE)
-    player = ForeignKey(Player, on_delete=CASCADE)
-    salary = IntegerField()
+    team_player = ForeignKey(TeamPlayer, on_delete=CASCADE)
+    status = CharField(max_length=100)
+    explanation = CharField(max_length=250, default=None, null=True)
+    seconds_played = BigIntegerField(null=True)
+    field_goals_made = BigIntegerField(null=True)
+    field_goals_attempted = BigIntegerField(null=True)
+    three_point_field_goals_made = BigIntegerField(null=True)
+    three_point_field_goals_attempted = BigIntegerField(null=True)
+    free_throws_made = BigIntegerField(null=True)
+    free_throws_attempted = BigIntegerField(null=True)
+    offensive_rebounds = BigIntegerField(null=True)
+    defensive_rebounds = BigIntegerField(null=True)
+    assists = BigIntegerField(null=True)
+    steals = BigIntegerField(null=True)
+    blocks = BigIntegerField(null=True)
+    turnovers = BigIntegerField(null=True)
+    personal_fouls = BigIntegerField(null=True)
+    plus_minus = BigIntegerField(null=True)
 
     class Meta:
-        unique_together = ('site', 'game', 'player', 'salary')
+        unique_together = ('game', 'team_player')
 
     def __unicode__(self):
-        return '{0} - {1} - {2} - {3}'.format(self.site, self.game, self.player, self.salary)
-
-
-class TraditionalBoxScore(Model):
-
-    player = ForeignKey(Player, on_delete=CASCADE)
-    game = ForeignKey(Game, on_delete=CASCADE)
-    seconds_played = IntegerField(null=True)
-    field_goals = IntegerField(null=True)
-    field_goal_attempts = IntegerField(null=True)
-    three_point_field_goals = IntegerField(null=True)
-    three_point_field_goal_attempts = IntegerField(null=True)
-    free_throws = IntegerField(null=True)
-    free_throw_attempts = IntegerField(null=True)
-    offensive_rebounds = IntegerField(null=True)
-    defensive_rebounds = IntegerField(null=True)
-    assists = IntegerField(null=True)
-    steals = IntegerField(null=True)
-    blocks = IntegerField(null=True)
-    turnovers = IntegerField(null=True)
-    fouls_committed = IntegerField(null=True)
-    plus_minus = IntegerField(null=True)
-
-    class Meta:
-        unique_together = ('player', 'game')
-
-    def __unicode__(self):
-        return '{0} - {1}'.format(self.player, self.game)
+        return '{0} - {1}'.format(self.game, self.team_player)
